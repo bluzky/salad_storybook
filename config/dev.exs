@@ -26,7 +26,8 @@ config :salad_storybook, SaladStorybookWeb.Endpoint,
   secret_key_base: "g9Tu8wCYDwTjhNDGhNqoemY49Jmzdq/thFYuFolQh7UDozFd+pi/gsn6J8G080g7",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]},
+    storybook_tailwind: {Tailwind, :install_and_run, [:storybook, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -58,7 +59,8 @@ config :salad_storybook, SaladStorybookWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/salad_storybook_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/salad_storybook_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"storybook/.*(exs)$"
     ]
   ]
 

@@ -1,5 +1,6 @@
 defmodule SaladStorybookWeb.Router do
   use SaladStorybookWeb, :router
+  import PhoenixStorybook.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,10 +15,13 @@ defmodule SaladStorybookWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/" do
+    storybook_assets()
+  end
+
   scope "/", SaladStorybookWeb do
     pipe_through :browser
-
-    get "/", PageController, :home
+    live_storybook("/storybook", backend_module: SaladStorybookWeb.Storybook)
   end
 
   # Other scopes may use custom stacks.

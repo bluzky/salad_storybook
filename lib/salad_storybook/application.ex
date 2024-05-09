@@ -9,7 +9,7 @@ defmodule SaladStorybook.Application do
   def start(_type, _args) do
     children = [
       SaladStorybookWeb.Telemetry,
-      SaladStorybook.Repo,
+      # SaladStorybook.Repo,
       {DNSCluster, query: Application.get_env(:salad_storybook, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: SaladStorybook.PubSub},
       # Start the Finch HTTP client for sending emails
