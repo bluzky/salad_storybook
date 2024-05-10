@@ -1,18 +1,93 @@
 defmodule Storybook.CoreComponents.Button do
   use PhoenixStorybook.Story, :component
 
-  def function, do: &SaladStorybookWeb.CoreComponents.button/1
+  # def function, do: &SaladStorybookWeb.CoreComponents.button/1
+  def function, do: &SaladUI.Button.button/1
 
   def variations do
     [
-      %Variation{
-        id: :default,
-        slots: ["Button"]
+      %VariationGroup{
+        id: :colors,
+        description: "Color variations with `variant` attribute.",
+        variations: [
+          %Variation{
+            id: :color_default,
+            slots: ["Default"]
+          },
+          %Variation{
+            id: :color_secondary,
+            attributes: %{
+              variant: "secondary"
+            },
+            slots: ["Secondary"]
+          },
+          %Variation{
+            id: :color_destructive,
+            attributes: %{
+              variant: "destructive"
+            },
+            slots: ["Destructive"]
+          },
+          %Variation{
+            id: :color_outline,
+            attributes: %{
+              variant: "outline"
+            },
+            slots: ["Outline"]
+          },
+          %Variation{
+            id: :color_ghost,
+            attributes: %{
+              variant: "ghost"
+            },
+            slots: ["Ghost"]
+          },
+          %Variation{
+            id: :color_link,
+            attributes: %{
+              variant: "link"
+            },
+            slots: ["Link"]
+          }
+        ]
+      },
+      %VariationGroup{
+        id: :sizes,
+        description: "Size variations with `size` attribute.",
+        variations: [
+          %Variation{
+            id: :size_lg,
+            attributes: %{
+              size: "lg"
+            },
+            slots: ["Large"]
+          },
+          %Variation{
+            id: :size_default,
+            slots: ["Default"]
+          },
+          %Variation{
+            id: :size_sm,
+            attributes: %{
+              size: "sm"
+            },
+            slots: ["Small"]
+          },
+          %Variation{
+            id: :size_icon,
+            attributes: %{
+              size: "icon"
+            },
+            slots: ["Icon"]
+          }
+        ]
       },
       %Variation{
         id: :custom_class,
         attributes: %{
-          class: "rounded-full bg-indigo-500 hover:bg-indigo-600"
+          class: "rounded-full",
+          variant: "destructive",
+          size: "lg"
         },
         slots: ["Disabled"]
       },
