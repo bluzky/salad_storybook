@@ -21,7 +21,7 @@ defmodule SaladStorybookWeb.Router do
 
   scope "/", SaladStorybookWeb do
     pipe_through :browser
-    live_storybook("/storybook", backend_module: SaladStorybookWeb.Storybook)
+    live_storybook("/", backend_module: SaladStorybookWeb.Storybook)
   end
 
   # Other scopes may use custom stacks.

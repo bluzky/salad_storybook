@@ -51,7 +51,12 @@ defmodule SaladStorybook.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
-      {:phoenix_storybook, "~> 0.6.0"}
+      {:phoenix_storybook, "~> 0.6.0"},
+      {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
+
+      # salad ui
+      {:tails, "~> 0.1.5"},
+      {:tailwind_formatter, "~> 0.3", only: [:dev, :test], runtime: false}
     ]
   end
 
