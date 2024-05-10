@@ -13,7 +13,6 @@ defmodule SaladUI.Input do
   attr(:id, :any, default: nil)
   attr(:name, :any, default: nil)
   attr(:value, :any)
-  attr(:required, :boolean, default: false)
 
   attr(:type, :string,
     default: "text",
@@ -29,7 +28,7 @@ defmodule SaladUI.Input do
 
   def input(assigns) do
     assigns = prepare_assign(assigns)
-    rest = Map.merge(assigns.rest, Map.take(assigns, [:id, :name, :value, :required, :type]))
+    rest = Map.merge(assigns.rest, Map.take(assigns, [:id, :name, :value, :type]))
     assigns = assign(assigns, :rest, rest)
 
     ~H"""
