@@ -4,7 +4,7 @@ defmodule SaladUI do
     quote do
       use Phoenix.Component
 
-      # import OrangeCmsWeb.Components.LadUI.Helpers
+      import SaladUI.Helpers
       import Tails, only: [classes: 1]
 
       # alias OrangeCmsWeb.Components.LadUI.LadJS

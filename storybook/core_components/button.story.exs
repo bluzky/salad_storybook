@@ -52,35 +52,9 @@ defmodule Storybook.CoreComponents.Button do
         ]
       },
       %VariationGroup{
-        id: :sizes,
-        description: "Size variations with `size` attribute.",
-        variations: [
-          %Variation{
-            id: :size_lg,
-            attributes: %{
-              size: "lg"
-            },
-            slots: ["Large"]
-          },
-          %Variation{
-            id: :size_default,
-            slots: ["Default"]
-          },
-          %Variation{
-            id: :size_sm,
-            attributes: %{
-              size: "sm"
-            },
-            slots: ["Small"]
-          },
-          %Variation{
-            id: :size_icon,
-            attributes: %{
-              size: "icon"
-            },
-            slots: ["Icon"]
-          }
-        ]
+        id: :colors,
+        description: "Color variations with `variant` attribute.",
+        variations: []
       },
       %Variation{
         id: :custom_class,
