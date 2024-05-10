@@ -2,13 +2,13 @@ defmodule Storybook.CoreComponents.Input do
   use PhoenixStorybook.Story, :component
   alias SaladStorybookWeb.CoreComponents
 
-  def function, do: &CoreComponents.input/1
+  def function, do: &SaladUI.Input.input/1
   def imports, do: [{CoreComponents, [simple_form: 1]}]
 
   def template do
     """
     <.simple_form :let={f} for={%{}} as={:story} class="w-full">
-      <.psb-variation-group field={f[:field]}/>
+      <.psb-variation-group/>
     </.simple_form>
     """
   end
@@ -18,23 +18,16 @@ defmodule Storybook.CoreComponents.Input do
       %VariationGroup{
         id: :basic_inputs,
         variations:
-          for type <- ~w(text textarea number date color range checkbox)a do
+          for type <- ~w(text number date color range)a do
             %Variation{
               id: type,
               attributes: %{
                 type: to_string(type),
-                label: String.capitalize("#{type} input")
+                label: String.capitalize("#{type} input"),
+                placeholder: String.capitalize("#{type} input")
               }
             }
           end
-      },
-      %Variation{
-        id: :select,
-        attributes: %{
-          label: "Select input",
-          type: "select",
-          options: ["Option 1", "Option 2", "Option 3"]
-        }
       }
     ]
   end
