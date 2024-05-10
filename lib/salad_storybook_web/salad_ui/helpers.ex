@@ -7,13 +7,9 @@ defmodule SaladUI.Helpers do
   """
   def prepare_assign(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     assigns
-    |> assign(field: nil)
-    |> assign_new(:id, fn -> field.id end)
-    |> assign_new(:name, fn ->
-      if assigns[:multiple] == true,
-        do: field.name <> "[]",
-        else: field.name
-    end)
+    |> assign(field: nil, id: assigns.id || field.id)
+    # |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
+    |> assign_new(:name, fn -> if assigns[:multiple], do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
   end
 
