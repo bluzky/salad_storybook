@@ -1,4 +1,7 @@
 defmodule SaladUI.Form do
+  @moduledoc false
+  use SaladUI, :component
+
   @doc """
   Implement of form component. SaladUI doesn't define its own form, but it provides a set of form-related components to help you build your own form.
 
@@ -37,8 +40,6 @@ defmodule SaladUI.Form do
             </.form>
       </div>
   """
-  use SaladUI, :component
-
   attr(:class, :string, default: nil)
   slot(:inner_block, required: true)
   attr(:rest, :global)
@@ -53,18 +54,22 @@ defmodule SaladUI.Form do
 
   attr(:class, :string, default: nil)
   attr(:error, :boolean, default: false)
+
   slot(:inner_block, required: true)
   attr(:rest, :global)
 
   def form_label(assigns) do
     ~H"""
-    <SaladUI.Label.label class={
-      classes([
-      @error && "text-destructive",
-        @class
-      ])
-    } {@rest}>
-       <%= render_slot(@inner_block) %>
+    <SaladUI.Label.label
+      class={
+        classes([
+          @error && "text-destructive",
+          @class
+        ])
+      }
+      {@rest}
+    >
+      <%= render_slot(@inner_block) %>
     </SaladUI.Label.label>
     """
   end
@@ -85,15 +90,13 @@ defmodule SaladUI.Form do
 
   def form_description(assigns) do
     ~H"""
-    <p class={classes(["text-sm text-muted-foreground", @class])} {@rest}>
+    <p class={classes(["text-muted-foreground text-sm", @class])} {@rest}>
       <%= render_slot(@inner_block) %>
     </p>
     """
   end
 
-  attr(:field, Phoenix.HTML.FormField,
-    doc: "a form field struct retrieved from the form, for example: @form[:email]"
-  )
+  attr(:field, Phoenix.HTML.FormField, doc: "a form field struct retrieved from the form, for example: @form[:email]")
 
   attr(:class, :string, default: nil)
   attr(:errors, :list, default: [])
@@ -111,7 +114,7 @@ defmodule SaladUI.Form do
     ~H"""
     <p
       :if={msg = render_slot(@inner_block) || not Enum.empty?(@errors)}
-      class={classes(["text-sm font-medium text-destructive", @class])}
+      class={classes(["text-destructive text-sm font-medium", @class])}
       {@rest}
     >
       <span :for={msg <- @errors} class="block"><%= msg %></span>

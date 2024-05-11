@@ -55,8 +55,7 @@ defmodule SaladStorybook.MixProject do
       {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
 
       # salad ui
-      {:tails, "~> 0.1.5"},
-      {:tailwind_formatter, "~> 0.3", only: [:dev, :test], runtime: false}
+      {:tails, "~> 0.1.5"}
     ]
   end
 

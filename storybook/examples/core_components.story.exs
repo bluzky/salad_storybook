@@ -1,5 +1,7 @@
 defmodule Storybook.Examples.CoreComponents do
+  @moduledoc false
   use PhoenixStorybook.Story, :example
+
   import SaladStorybookWeb.CoreComponents
 
   alias Phoenix.LiveView.JS

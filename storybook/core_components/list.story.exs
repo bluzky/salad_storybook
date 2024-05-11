@@ -1,4 +1,5 @@
 defmodule Storybook.CoreComponents.List do
+  @moduledoc false
   use PhoenixStorybook.Story, :component
 
   def function, do: &SaladStorybookWeb.CoreComponents.list/1

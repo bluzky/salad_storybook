@@ -1,4 +1,5 @@
 defmodule SaladUI.Label do
+  @moduledoc false
   use SaladUI, :component
 
   @doc """
@@ -13,7 +14,6 @@ defmodule SaladUI.Label do
   slot(:inner_block, required: true)
 
   def label(assigns) do
-
     ~H"""
     <label
       class={

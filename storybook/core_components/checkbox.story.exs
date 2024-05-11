@@ -1,4 +1,5 @@
 defmodule Storybook.CoreComponents.Checkbox do
+  @moduledoc false
   use PhoenixStorybook.Story, :component
 
   def function, do: &SaladUI.Checkbox.checkbox/1

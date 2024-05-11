@@ -1,4 +1,5 @@
 defmodule SaladUI.Input do
+  @moduledoc false
   use SaladUI, :component
 
   @doc """
@@ -19,9 +20,7 @@ defmodule SaladUI.Input do
     values: ~w(date datetime-local email file hidden month number password tel text time url week)
   )
 
-  attr(:field, Phoenix.HTML.FormField,
-    doc: "a form field struct retrieved from the form, for example: @form[:email]"
-  )
+  attr(:field, Phoenix.HTML.FormField, doc: "a form field struct retrieved from the form, for example: @form[:email]")
 
   attr(:class, :string, default: nil)
   attr(:rest, :global)
