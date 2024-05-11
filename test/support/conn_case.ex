@@ -20,14 +20,15 @@ defmodule SaladStorybookWeb.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      @endpoint SaladStorybookWeb.Endpoint
-
       use SaladStorybookWeb, :verified_routes
+
+      import Phoenix.ConnTest
 
       # Import conveniences for testing with connections
       import Plug.Conn
-      import Phoenix.ConnTest
       import SaladStorybookWeb.ConnCase
+
+      @endpoint SaladStorybookWeb.Endpoint
     end
   end
 

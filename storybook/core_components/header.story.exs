@@ -1,5 +1,7 @@
 defmodule Storybook.CoreComponents.Header do
+  @moduledoc false
   use PhoenixStorybook.Story, :component
+
   alias SaladStorybookWeb.CoreComponents
 
   def function, do: &CoreComponents.header/1

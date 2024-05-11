@@ -1,4 +1,5 @@
 defmodule SaladStorybookWeb.Storybook do
+  @moduledoc false
   use PhoenixStorybook,
     otp_app: :salad_storybook_web,
     content_path: Path.expand("../../storybook", __DIR__),

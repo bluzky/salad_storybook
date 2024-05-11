@@ -1,5 +1,6 @@
 defmodule SaladStorybookWeb.Router do
   use SaladStorybookWeb, :router
+
   import PhoenixStorybook.Router
 
   pipeline :browser do

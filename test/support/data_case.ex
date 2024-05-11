@@ -18,12 +18,12 @@ defmodule SaladStorybook.DataCase do
 
   using do
     quote do
-      alias SaladStorybook.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import SaladStorybook.DataCase
+
+      alias SaladStorybook.Repo
     end
   end
 

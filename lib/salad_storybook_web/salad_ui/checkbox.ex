@@ -1,4 +1,5 @@
 defmodule SaladUI.Checkbox do
+  @moduledoc false
   use SaladUI, :component
 
   @doc """

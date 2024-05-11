@@ -1,4 +1,5 @@
 defmodule Storybook.CoreComponents.Textarea do
+  @moduledoc false
   use PhoenixStorybook.Story, :component
 
   def function, do: &SaladUI.Textarea.textarea/1
