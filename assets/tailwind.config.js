@@ -12,7 +12,7 @@ module.exports = {
     "./js/**/*.js",
     "../lib/salad_storybook_web.ex",
     "../lib/salad_storybook_web/**/*.*ex",
-    "../**/*.*exs",
+    "../**/*.story.exs",
     "../../../config/*.*exs",
   ],
   theme: {
