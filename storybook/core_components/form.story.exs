@@ -15,7 +15,7 @@ defmodule Storybook.CoreComponents.Form do
     [
       %Variation{
         id: :form,
-        template: ~H"""
+        template: """
         <.form :let={f} for={%{}} class="w-2/3 space-y-6">
           <% f = %{f | data: %{name: ""}} %>
           <.form_item>
