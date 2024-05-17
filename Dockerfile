@@ -21,7 +21,7 @@ ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 FROM ${BUILDER_IMAGE} as builder
 
 # install build dependencies
-RUN apt-get update -y && apt-get install -y build-essential git \
+RUN apt-get update -y && apt-get install -y build-essential git nodejs npm \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
 # prepare build dir
@@ -43,12 +43,13 @@ RUN mkdir config
 # to ensure any relevant config change will trigger the dependencies
 # to be re-compiled.
 COPY config/config.exs config/${MIX_ENV}.exs config/
+COPY assets assets
+# assets is required to build tails
 RUN mix deps.compile
 
 COPY priv priv
 COPY lib lib
 
-COPY assets assets
 COPY storybook storybook
 
 # install node modules
@@ -58,9 +59,9 @@ RUN cd assets && npm install
 RUN mix assets.deploy
 
 # compile phoenix_storybook assets
-RUN cd deps/phoenix_storybook && mix deps.get
-RUN cd deps/phoenix_storybook && npm ci --prefix assets
-RUN cd deps/phoenix_storybook && MIX_ENV=dev mix assets.build
+# RUN cd deps/phoenix_storybook && mix deps.get
+# RUN cd deps/phoenix_storybook && npm ci --prefix assets
+# RUN cd deps/phoenix_storybook && MIX_ENV=dev mix assets.build
 
 # Compile the release
 RUN mix compile
@@ -69,7 +70,7 @@ RUN mix compile
 COPY config/runtime.exs config/
 
 COPY rel rel
-RUN mix release
+RUN mix release salad_storybook
 
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities

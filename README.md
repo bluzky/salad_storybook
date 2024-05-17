@@ -3,6 +3,7 @@
 > Salad UI is a collection of phoenix live view component inspired by [shadui](https://ui.shadcn.com/)
 > Currently these components are under heavy development and cannot be used as separated library.
 
+### [Demo](https://salad-storybook.fly.dev/)
 
 ## How to start Story book.
 

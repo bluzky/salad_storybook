@@ -9,7 +9,23 @@ defmodule SaladStorybook.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
+    ]
+  end
+
+  defp releases do
+    [
+      salad_storybook: [
+        include_executables_for: [:unix],
+        applications: [
+          runtime_tools: :permanent,
+          salad_storybook: :permanent
+        ],
+        strip_beams: [
+          keep: ["Docs"]
+        ]
+      ]
     ]
   end
 
