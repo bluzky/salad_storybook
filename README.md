@@ -66,7 +66,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - Sonner
 - Switch
 - [ ] Table
-- [ ] Tabs
+- [x] Tabs
 - [x] Textarea
 - Toast
 - Toggle
