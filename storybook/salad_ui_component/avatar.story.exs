@@ -1,4 +1,4 @@
-defmodule Storybook.CoreComponents.Avatar do
+defmodule Storybook.SaladUIComponents.Avatar do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 

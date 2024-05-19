@@ -4,8 +4,6 @@ defmodule Storybook.MyPage do
   @moduledoc false
   use PhoenixStorybook.Story, :page
 
-  def doc, do: "Your very first steps into using Phoenix Storybook"
-
   # Declare an optional tab-based navigation in your page:
   def navigation do
     [
@@ -21,25 +19,18 @@ defmodule Storybook.MyPage do
     ~H"""
     <div class="psb-welcome-page">
       <p>
-        We generated your storybook with an example of a page and a component.
-        Explore the generated <code class="psb-inline">*.story.exs</code>
-        files in your <code class="inline">/storybook</code>
-        directory. When you're ready to add your own, just drop your new story & index files into the same directory and refresh your storybook.
+        Welcome to SaladUI Storybook! This is a place where you can explore SaladUI components and their variations.
       </p>
-
       <p>
-        Here are a few docs you might be interested in:
+        SaladUI is a collection of components that are inspired by the
+        <a href="https://ui.shadcn.com/" target="_blank">Shad UI</a>
+        design system. And I try my best to port those components to Phoenix LiveView. Of course, there are some differences between SaladUI and Shad UI, but I try to keep them as similar as possible.
       </p>
-
-      <.description_list items={[
-        {"Create a new Story", doc_link("Story")},
-        {"Display components using Variations", doc_link("Stories.Variation")},
-        {"Group components using VariationGroups", doc_link("Stories.VariationGroup")},
-        {"Organize the sidebar with Index files", doc_link("Index")}
-      ]} />
-
       <p>
-        This should be enough to get you started, but you can use the tabs in the upper-right corner of this page to <strong>check out advanced usage guides</strong>.
+        These components are very much in development and are not ready for production use. But you can use them in your personal projects or contribute to the project.
+      </p>
+      <p>
+        My goals is to build a separated library that can be used in any Phoenix LiveView project. All of your comments and suggestions are welcome.
       </p>
     </div>
     """
@@ -66,36 +57,5 @@ defmodule Storybook.MyPage do
       <%= Phoenix.HTML.raw(@guide_content) %>
     </div>
     """
-  end
-
-  defp description_list(assigns) do
-    ~H"""
-    <div class="psb-w-full md:psb-px-8">
-      <div class="psb-border-gray-200 psb-px-4 psb-py-5 psb-w-full sm:psb-p-0 md:psb-border-t md:psb-my-6">
-        <dl class="sm:psb-divide-y sm:psb-divide-gray-200">
-          <%= for {dt, link} <- @items do %>
-            <div class="psb-py-4 psb-max-w-full sm:psb-grid sm:psb-grid-cols-3 sm:psb-gap-4 sm:psb-py-5 sm:psb-px-6">
-              <dt class="psb-text-base psb-font-medium psb-text-indigo-700">
-                <%= dt %>
-              </dt>
-              <dd class="psb-mt-1 psb-text-base psb-text-slate-400 psb-group psb-cursor-pointer psb-max-w-full sm:psb-col-span-2 sm:psb-mt-0">
-                <a
-                  class="psb-max-w-full psb-inline-block psb-truncate group-hover:psb-text-indigo-700"
-                  href={link}
-                  target="_blank"
-                >
-                  <%= link %>
-                </a>
-              </dd>
-            </div>
-          <% end %>
-        </dl>
-      </div>
-    </div>
-    """
-  end
-
-  defp doc_link(page) do
-    "https://hexdocs.pm/phoenix_storybook/PhoenixStorybook.#{page}.html"
   end
 end

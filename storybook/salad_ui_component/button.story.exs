@@ -1,8 +1,8 @@
-defmodule Storybook.CoreComponents.Button do
+defmodule Storybook.SaladUIComponents.Button do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  # def function, do: &SaladStorybookWeb.CoreComponents.button/1
+  # def function, do: &SaladStorybookWeb.SaladUIComponents.button/1
   def function, do: &SaladUI.Button.button/1
 
   def variations do

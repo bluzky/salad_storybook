@@ -1,4 +1,4 @@
-defmodule Storybook.CoreComponents.Dialog do
+defmodule Storybook.SaladUIComponents.Dialog do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 

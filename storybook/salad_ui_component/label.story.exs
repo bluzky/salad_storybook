@@ -1,8 +1,8 @@
-defmodule Storybook.CoreComponents.Label do
+defmodule Storybook.SaladUIComponents.Label do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  alias SaladStorybookWeb.CoreComponents
+  alias SaladStorybookWeb.SaladUIComponents
 
   def function, do: &SaladUI.Label.label/1
 

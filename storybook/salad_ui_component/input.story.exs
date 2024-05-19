@@ -1,11 +1,11 @@
-defmodule Storybook.CoreComponents.Input do
+defmodule Storybook.SaladUIComponents.Input do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  alias SaladStorybookWeb.CoreComponents
+  alias SaladStorybookWeb.SaladUIComponents
 
   def function, do: &SaladUI.Input.input/1
-  def imports, do: [{CoreComponents, [simple_form: 1]}]
+  def imports, do: [{SaladUIComponents, [simple_form: 1]}]
 
   def template do
     """
