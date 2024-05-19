@@ -1,4 +1,4 @@
-defmodule Storybook.CoreComponents.Tab do
+defmodule Storybook.SaladUIComponents.Tab do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 

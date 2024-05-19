@@ -1,8 +1,8 @@
-defmodule Storybook.CoreComponents.Badge do
+defmodule Storybook.SaladUIComponents.Badge do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  # def function, do: &SaladStorybookWeb.CoreComponents.button/1
+  # def function, do: &SaladStorybookWeb.SaladUIComponents.button/1
   def function, do: &SaladUI.Badge.badge/1
 
   def variations do

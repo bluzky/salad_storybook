@@ -1,8 +1,8 @@
-defmodule Storybook.CoreComponents.Select do
+defmodule Storybook.SaladUIComponents.Select do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  alias SaladStorybookWeb.CoreComponents
+  alias SaladStorybookWeb.SaladUIComponents
 
   def function, do: &SaladUI.Select.select/1
 

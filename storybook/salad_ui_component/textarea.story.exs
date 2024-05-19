@@ -1,4 +1,4 @@
-defmodule Storybook.CoreComponents.Textarea do
+defmodule Storybook.SaladUIComponents.Textarea do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
