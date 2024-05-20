@@ -24,7 +24,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ## List of components
 
 - Accordion
-- [ ] Alert
+- [x] Alert
 - [ ] Alert Dialog
 - Aspect Ratio
 - [x] Avatar
