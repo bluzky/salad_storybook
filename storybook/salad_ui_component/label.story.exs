@@ -2,8 +2,6 @@ defmodule Storybook.SaladUIComponents.Label do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  alias SaladStorybookWeb.SaladUIComponents
-
   def function, do: &SaladUI.Label.label/1
 
   def variations do
