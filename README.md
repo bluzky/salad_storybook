@@ -1,5 +1,8 @@
 # SaladStorybook
 
+
+![Sample page](./img/demo.png)
+
 > Salad UI is a collection of phoenix live view component inspired by [shadui](https://ui.shadcn.com/)
 > Currently these components are under heavy development and cannot be used as separated library.
 
@@ -23,40 +26,40 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## List of components
 
-- Accordion
+- [ ] Accordion
 - [x] Alert
 - [ ] Alert Dialog
 - [x] Avatar
 - [x] Badge
-- Breadcrumb
+- [ ] Breadcrumb
 - [x] Button
 - [x] Card
-- Carousel
+- [ ] Carousel
 - [x] Checkbox
-- Collapsible
-- Combobox
-- Command
-- Context Menu
+- [ ] Collapsible
+- [ ] Combobox
+- [ ] Command
+- [ ] Context Menu
 - [x] Dialog
-- Drawer
-- [ ] Dropdown Menu
+- [ ] Drawer
+- [x] Dropdown Menu
 - [x] Form
-- Hover Card
+- [ ] Hover Card
 - [x] Input
-- Input OTP
+- [ ] Input OTP
 - [x] Label
-- Pagination
-- Popover
-- Progress
-- Radio Group
-- Scroll Area
+- [ ] Pagination
+- [ ] Popover
+- [ ] Progress
+- [ ] Radio Group
+- [ ] Scroll Area
 - [x] Select
 - [ ] Separator
-- Sheet
-- Skeleton
-- Slider
-- Switch
+- [x] Sheet
+- [ ] Skeleton
+- [ ] Slider
+- [ ] Switch
 - [x] Table
 - [x] Tabs
 - [x] Textarea
-- Tooltip
+- [ ] Tooltip
