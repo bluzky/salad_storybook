@@ -7,10 +7,7 @@ defmodule SaladUI.Avatar do
 
   def avatar(assigns) do
     ~H"""
-    <span
-      class={classes(["relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", @class])}
-      {@rest}
-    >
+    <span class={classes(["relative h-10 w-10 overflow-hidden rounded-full", @class])} {@rest}>
       <%= render_slot(@inner_block) %>
     </span>
     """
@@ -21,7 +18,12 @@ defmodule SaladUI.Avatar do
 
   def avatar_image(assigns) do
     ~H"""
-    <img class={classes(["aspect-square h-full w-full", @class])} {@rest} />
+    <img
+      class={classes(["aspect-square h-full w-full", @class])}
+      {@rest}
+      phx-update="ignore"
+      onerror="this.style.display='none'"
+    />
     """
   end
 
