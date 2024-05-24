@@ -58,7 +58,7 @@ defmodule SaladUI.DropdownMenu do
       data-state="closed"
       {@rest}
       phx-click={toggle()}
-      phx-click-away={toggle()}
+      phx-click-away={hide()}
     >
       <%= render_slot(@inner_block) %>
     </div>
@@ -88,6 +88,10 @@ defmodule SaladUI.DropdownMenu do
   end
 
   defp toggle(js \\ %JS{}) do
-    JS.toggle_attribute(js, {"data-state", "closed", "open"})
+    JS.toggle_attribute(js, {"data-state", "open", "closed"})
+  end
+
+  defp hide(js \\ %JS{}) do
+    JS.set_attribute(js, {"data-state", "closed"})
   end
 end
