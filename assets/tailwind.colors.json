@@ -1,21 +1,35 @@
 {
+  "accent": {
+    "DEFAULT": "hsl(var(--accent))",
+    "foreground": "hsl(var(--accent-foreground))"
+  },
   "background": "hsl(var(--background))",
+  "border": "hsl(var(--border))",
+  "card": {
+    "DEFAULT": "hsl(var(--card))",
+    "foreground": "hsl(var(--card-foreground))"
+  },
+  "destructive": {
+    "DEFAULT": "hsl(var(--destructive))",
+    "foreground": "hsl(var(--destructive-foreground))"
+  },
   "foreground": "hsl(var(--foreground))",
-  "card": "hsl(var(--card))",
-  "card-foreground": "hsl(var(--card-foreground))",
-  "popover": "hsl(var(--popover))",
-  "popover-foreground": "hsl(var(--popover-foreground))",
-  "muted": "hsl(var(--muted))",
-  "muted-foreground": "hsl(var(--muted-foreground))",
-  "primary": "hsl(var(--primary))",
-  "primary-foreground": "hsl(var(--primary-foreground))",
-  "secondary": "hsl(var(--secondary))",
-  "secondary-foreground": "hsl(var(--secondary-foreground))",
-  "accent": "hsl(var(--accent))",
-  "accent-foreground": "hsl(var(--accent-foreground))",
-  "destructive": "hsl(var(--destructive))",
-  "destructive-foreground": "hsl(var(--destructive-foreground))",
-  "ring": "hsl(var(--ring))",
   "input": "hsl(var(--input))",
-  "border": "hsl(var(--border))"
+  "muted": {
+    "DEFAULT": "hsl(var(--muted))",
+    "foreground": "hsl(var(--muted-foreground))"
+  },
+  "popover": {
+    "DEFAULT": "hsl(var(--popover))",
+    "foreground": "hsl(var(--popover-foreground))"
+  },
+  "primary": {
+    "DEFAULT": "hsl(var(--primary))",
+    "foreground": "hsl(var(--primary-foreground))"
+  },
+  "ring": "hsl(var(--ring))",
+  "secondary": {
+    "DEFAULT": "hsl(var(--secondary))",
+    "foreground": "hsl(var(--secondary-foreground))"
+  }
 }

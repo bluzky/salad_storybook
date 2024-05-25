@@ -6,5 +6,6 @@ defmodule SaladStorybookWeb.Storybook do
     # assets path are remote path, not local file-system paths
     css_path: "/assets/storybook.css",
     js_path: "/assets/storybook.js",
-    sandbox_class: "salad-storybook-web"
+    sandbox_class: "salad-storybook-web",
+    title: "SaladUI"
 end

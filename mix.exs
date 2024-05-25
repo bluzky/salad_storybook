@@ -71,7 +71,12 @@ defmodule SaladStorybook.MixProject do
       {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
 
       # salad ui
-      {:tails, "~> 0.1.5"}
+      {:tails, "~> 0.1.5"},
+
+      # load local salad_ui on dev from local path
+      (Mix.env() == :prod &&
+         {:salad_ui, github: "bluzky/salad_ui"}) ||
+        {:salad_ui, path: "../salad_ui"}
     ]
   end
 

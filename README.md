@@ -12,11 +12,13 @@
 
 1. Clone this repository
 
-2. Install node modules
+2. Clone https://github.com/bluzky/salad_ui at the same directory with this repo
+
+3. Install node modules
 
 `cd assets && yarn`
 
-3. Install dependency & start
+4. Install dependency & start
 ```
 mix deps.get
 mix phx.server
