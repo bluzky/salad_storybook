@@ -60,9 +60,13 @@ config :salad_storybook, SaladStorybookWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/salad_storybook_web/(controllers|live|components)/.*(ex|heex)$",
-      ~r"storybook/.*(exs)$"
+      ~r"storybook/.*(exs)$",
+      ~r"salad_ui/lib/salad_ui/.*ex"
     ]
-  ]
+  ],
+  reloadable_apps: [:salad_ui]
+
+config :phoenix_live_reload, :dirs, ["", "../salad_ui"]
 
 # Enable dev routes for dashboard and mailbox
 config :salad_storybook, dev_routes: true
