@@ -66,7 +66,8 @@ defmodule SaladUI.DropdownMenu do
   end
 
   attr :class, :string, default: nil
-  attr :hover_open, :boolean, default: false
+  attr :side, :string, values: ["top", "right", "bottom", "left"], default: "bottom"
+  attr :align, :string, values: ["start", "center", "end"], default: "start"
   slot :inner_block, required: true
   attr :rest, :global
 
@@ -76,6 +77,7 @@ defmodule SaladUI.DropdownMenu do
       class={[
         "z-50 peer-data-[state=open]:animate-in peer-data-[state=closed]:animate-out peer-data-[state=closed]:fade-out-0 peer-data-[state=open]:fade-in-0 peer-data-[state=closed]:zoom-out-95 peer-data-[state=open]:zoom-in-95 peer-data-[side=bottom]:slide-in-from-top-2 peer-data-[side=left]:slide-in-from-right-2 peer-data-[side=right]:slide-in-from-left-2 peer-data-[side=top]:slide-in-from-bottom-2",
         "absolute peer-data-[state=closed]:hidden",
+        position(@side, @align),
         @class
       ]}
       {@rest}
@@ -85,6 +87,58 @@ defmodule SaladUI.DropdownMenu do
       </div>
     </div>
     """
+  end
+
+  defp position("bottom", align) do
+    base = "top-full mt-2"
+
+    align =
+      case align do
+        "start" -> "left-0"
+        "center" -> "left-1/2 -translate-x-1/2"
+        "end" -> "right-0"
+      end
+
+    "#{base} #{align}"
+  end
+
+  defp position("top", align) do
+    base = "bottom-full mb-2"
+
+    align =
+      case align do
+        "start" -> "left-0"
+        "center" -> "left-1/2 -translate-x-1/2"
+        "end" -> "right-0"
+      end
+
+    "#{base} #{align}"
+  end
+
+  defp position("right", align) do
+    base = "left-full ml-2"
+
+    align =
+      case align do
+        "start" -> "top-0"
+        "center" -> "top-1/2 -translate-y-1/2"
+        "end" -> "bottom-0"
+      end
+
+    "#{base} #{align}"
+  end
+
+  defp position("left", align) do
+    base = "right-full mr-2"
+
+    align =
+      case align do
+        "start" -> "top-0"
+        "center" -> "top-1/2 -translate-y-1/2"
+        "end" -> "bottom-0"
+      end
+
+    "#{base} #{align}"
   end
 
   defp toggle(js \\ %JS{}) do
