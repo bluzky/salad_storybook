@@ -15,13 +15,15 @@ defmodule Storybook.SaladUIComponents.Avatar do
         template: """
         <.avatar>
         <.avatar_image src="https://github.com/shadcn.png" />
+        <.avatar_fallback class="bg-primary text-white">CN</.avatar_fallback>
         </.avatar>
         """
       },
       %Variation{
-        id: :avatar_text,
+        id: :avatar_fallback,
         template: """
         <.avatar>
+        <.avatar_image src="http://example.com/badimage.png" />
         <.avatar_fallback class="bg-primary text-white">CN</.avatar_fallback>
         </.avatar>
         """
