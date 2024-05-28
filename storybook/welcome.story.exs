@@ -18,6 +18,22 @@ defmodule Storybook.MyPage do
   # This is a dummy fonction that you should replace with your own HEEx content.
   def render(assigns) do
     ~H"""
+    <div class="text-center pt-20 pb-32">
+      <h1 class="text-4xl font-bold">Build your LiveView component library</h1>
+      <p class="text-lg text-muted-foreground">
+        Fully customizable elements to build your own Phoenix LiveView components
+      </p>
+      <div class="flex w-full items-center justify-center space-x-4 py-8 md:pb-10">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+          href="https://github.com/shadcn-ui/ui"
+        >
+          <Lucideicons.github class="h-4 w-4 mr-2" />Visit GitHub
+        </a>
+      </div>
+    </div>
     <div class="flex min-h-screen w-full flex-col">
       <header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
         <nav class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
