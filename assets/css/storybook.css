@@ -59,3 +59,8 @@
   --input: 240 3.7% 15.9%;
   --ring: 240 4.9% 83.9%;
 }
+
+.psb-text-indigo-600,
+.group-hover\:psb-text-indigo-600 {
+  color: hsl(var(--primary)) !important;
+}
