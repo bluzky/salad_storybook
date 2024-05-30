@@ -26,7 +26,9 @@ defmodule Storybook.SaladUIComponents.Select do
       %Variation{
         id: :select,
         attributes: %{
-          name: "fruit"
+          name: "fruit",
+          target: "my-select",
+          placeholder: "Select a fruit"
         },
         template: """
         <form>
@@ -34,20 +36,19 @@ defmodule Storybook.SaladUIComponents.Select do
           <.button type="submit" class="w-full mt-2">Submit</.button>
         </form>
         """,
+        let: :select,
         slots: [
           """
-            <.select_trigger target="my-select" class="w-[180px]">
-              <.select_value placeholder=".select a fruit" />
-            </.select_trigger>
-            <.select_content id="my-select" class="w-full">
+            <.select_trigger instance={select} class="w-[180px]"/>
+            <.select_content class="w-full" instance={select}>
               <.select_group>
                 <.select_label>Fruits</.select_label>
-                <.select_item name="fruit" value="apple">Apple</.select_item>
-                <.select_item name="fruit" value="banana">Banana</.select_item>
-                <.select_item name="fruit" selected value="blueberry">Blueberry</.select_item>
+                <.select_item instance={select} value="apple" label="Apple"></.select_item>
+                <.select_item instance={select} value="banana" label="Banana"></.select_item>
+                <.select_item instance={select}  value="blueberry"></.select_item>
                 <.select_separator />
-                <.select_item name="fruit" disabled value="grapes">Grapes</.select_item>
-                <.select_item name="fruit" value="pineapple">Pineapple</.select_item>
+                <.select_item instance={select} disabled value="grapes"></.select_item>
+                <.select_item instance={select} value="pineapple"></.select_item>
               </.select_group>
             </.select_content>
           """
