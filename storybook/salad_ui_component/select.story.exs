@@ -2,8 +2,6 @@ defmodule Storybook.SaladUIComponents.Select do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
-  alias SaladStorybookWeb.SaladUIComponents
-
   def function, do: &SaladUI.Select.select/1
 
   def imports,
