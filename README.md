@@ -33,7 +33,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - [ ] Alert Dialog
 - [x] Avatar
 - [x] Badge
-- [ ] Breadcrumb
+- [x] Breadcrumb
 - [x] Button
 - [x] Card
 - [ ] Carousel
@@ -50,15 +50,15 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - [x] Input
 - [ ] Input OTP
 - [x] Label
-- [ ] Pagination
+- [x] Pagination
 - [ ] Popover
-- [ ] Progress
+- [x] Progress
 - [ ] Radio Group
-- [ ] Scroll Area
+- [x] Scroll Area
 - [x] Select
-- [ ] Separator
+- [x] Separator
 - [x] Sheet
-- [ ] Skeleton
+- [x] Skeleton
 - [ ] Slider
 - [ ] Switch
 - [x] Table
