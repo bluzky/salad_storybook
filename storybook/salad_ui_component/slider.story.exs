@@ -33,6 +33,12 @@ defmodule Storybook.SaladUIComponents.Slider do
           class: "w-[60%]",
           name: "amount"
         }
+      },
+      %Variation{
+        id: :built_in_slider,
+        template: """
+        <input type="range" min="10" max="50" value="20" step="5" class="w-[60%]"/>
+        """
       }
     ]
   end
