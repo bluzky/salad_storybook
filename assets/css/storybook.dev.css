@@ -2,7 +2,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "../../deps/salad_ui/assets/salad_ui.css";
+@import "../../../salad_ui/assets/salad_ui.css";
 @import "./color.css";
 
 /*

@@ -86,3 +86,13 @@ config :phoenix_live_view, :debug_heex_annotations, true
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :tailwind,
+  storybook: [
+    args: ~w(
+          --config=tailwind.config.js
+          --input=css/storybook.dev.css
+          --output=../priv/static/assets/storybook.css
+        ),
+    cd: Path.expand("../assets", __DIR__)
+  ]
