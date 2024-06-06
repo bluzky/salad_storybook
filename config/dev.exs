@@ -59,7 +59,8 @@ config :salad_storybook, SaladStorybookWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/salad_storybook_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"lib/salad_storybook_web/(controllers|live|components)/(.+/)*.*(ex|heex)$",
+      ~r"lib/salad_storybook_web/live/demo/.*(ex|heex)$",
       ~r"storybook/.*(exs)$",
       ~r"salad_ui/lib/salad_ui/.*ex"
     ]

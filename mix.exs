@@ -55,7 +55,6 @@ defmodule SaladStorybook.MixProject do
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.20.1"},
-      {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.2"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
@@ -69,6 +68,9 @@ defmodule SaladStorybook.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:phoenix_storybook, "~> 0.6.0"},
       {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
+      {:floki, "~> 0.36"},
+      {:fast_html, "~> 2.3"},
+      {:faker, "~> 0.18"},
 
       # salad ui
       {:lucide_icons, "~> 1.1"},

@@ -20,8 +20,15 @@ defmodule SaladStorybookWeb.Router do
     storybook_assets()
   end
 
+  scope "/demo", SaladStorybookWeb do
+    pipe_through :browser
+
+    live "/dashboard-one", Demo.DashboardOne
+  end
+
   scope "/", SaladStorybookWeb do
     pipe_through :browser
+
     live_storybook("/", backend_module: SaladStorybookWeb.Storybook)
   end
 

@@ -1,4 +1,4 @@
-defmodule Storybook.SaladUIComponents.Form do
+defmodule Storybook.SaladUIComponents.Card do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 

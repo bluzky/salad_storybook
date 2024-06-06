@@ -28,10 +28,10 @@ defmodule Storybook.SaladUIComponents.Tab do
         template: """
         <.tabs default="account" id="settings" class="w-[400px]">
           <.tabs_list class="grid w-full grid-cols-2">
-            <.tabs_trigger root="settings" target="account">account</.tabs_trigger>
-            <.tabs_trigger root="settings" target="password">password</.tabs_trigger>
+            <.tabs_trigger root="settings" value="account">account</.tabs_trigger>
+            <.tabs_trigger root="settings" value="password">password</.tabs_trigger>
           </.tabs_list>
-          <.tabs_content id="account">
+          <.tabs_content value="account">
             <.card>
               <.card_header>
                 <.card_title>Account</.card_title>
@@ -54,7 +54,7 @@ defmodule Storybook.SaladUIComponents.Tab do
               </.card_footer>
             </.card>
           </.tabs_content>
-          <.tabs_content id="password">
+          <.tabs_content value="password">
             <.card>
               <.card_header>
                 <.card_title>Password</.card_title>

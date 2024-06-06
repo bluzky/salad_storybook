@@ -58,6 +58,15 @@ defmodule SaladStorybookWeb do
     end
   end
 
+  def demo_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SaladStorybookWeb.Layouts, :demo}
+
+      unquote(html_helpers())
+    end
+  end
+
   def live_component do
     quote do
       use Phoenix.LiveComponent
@@ -84,7 +93,7 @@ defmodule SaladStorybookWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import SaladStorybookWeb.CoreComponents
+      import SaladStorybookWeb.CoreComponents, only: [flash_group: 1]
       import SaladStorybookWeb.Gettext
 
       # Shortcut for generating JS commands
