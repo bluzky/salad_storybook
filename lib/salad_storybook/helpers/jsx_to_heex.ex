@@ -4,11 +4,19 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
   def convert(jsx) do
     case Floki.parse_fragment(jsx) do
       {:ok, ast} ->
-        {:ok, ast |> Floki.traverse_and_update(&convert_tag/1) |> Floki.raw_html()}
+        {:ok, ast |> Floki.traverse_and_update(&convert_tag/1) |> Floki.raw_html(pretty: true)}
 
       {:error, _} ->
         {:error, "Bad JSX syntax"}
     end
+  end
+
+  defp convert_tag({"dropdownmenucontent" = tag, attrs, children}) do
+    tag = map_tag(tag)
+    attrs = map_attr(attrs)
+    children = Enum.map(children, &convert_tag/1)
+
+    {tag, attrs, [{".menu", [], children}]}
   end
 
   defp convert_tag({tag, attrs, children}) do
@@ -24,49 +32,48 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
     tag
   end
 
-  @explicit_tag_mapping Map.new(
-                          [
-                            "link",
-                            "badge",
-                            "input",
-                            "sheet",
-                            "sheet_content",
-                            "sheet_trigger",
-                            "button",
-                            "breadcrumb",
-                            "breadcrumb_item",
-                            "breadcrumb_link",
-                            "breadcrumb_list",
-                            "breadcrumb_page",
-                            "breadcrumb_separator",
-                            "card",
-                            "card_content",
-                            "card_description",
-                            "card_footer",
-                            "card_header",
-                            "card_title",
-                            "dropdown_menu",
-                            "dropdown_menu_content",
-                            "dropdown_menu_item",
-                            "dropdown_menu_label",
-                            "dropdown_menu_separator",
-                            "dropdown_menu_trigger",
-                            "table",
-                            "table_body",
-                            "table_cell",
-                            "table_head",
-                            "table_header",
-                            "table_row",
-                            "tabs",
-                            "tabs_content",
-                            "tabs_list",
-                            "tabs_trigger",
-                            "tooltip",
-                            "tooltip_content",
-                            "tooltip_trigger"
-                          ],
-                          &{String.replace(&1, "_", ""), ".#{&1}"}
-                        )
+  @default_mapping [
+                     SaladUI.Button,
+                     SaladUI.Card,
+                     SaladUI.DropdownMenu,
+                     SaladUI.Breadcrumb,
+                     SaladUI.Table,
+                     SaladUI.Tabs,
+                     SaladUI.Tooltip,
+                     SaladUI.Sheet,
+                     SaladUI.Input,
+                     SaladUI.Badge,
+                     SaladUI.Textarea,
+                     SaladUI.Label,
+                     SaladUI.Skeleton,
+                     SaladUI.Avatar,
+                     SaladUI.Slider,
+                     SaladUI.Alert,
+                     SaladUI.Dialog,
+                     SaladUI.Pagination,
+                     SaladUI.Checkbox,
+                     SaladUI.Form,
+                     SaladUI.Menu,
+                     SaladUI.Progress,
+                     SaladUI.ScrollArea,
+                     SaladUI.Select,
+                     SaladUI.Switch,
+                     SaladUI.Separator
+                   ]
+                   |> Enum.map(& &1.__info__(:functions))
+                   |> Enum.concat()
+                   |> Enum.reject(fn {name, arity} -> arity != 1 or String.starts_with?(to_string(name), "__") end)
+                   |> Map.new(fn {name, _} -> {String.replace(to_string(name), "_", ""), ".#{name}"} end)
+
+  @custom_mapping %{
+    "link" => ".link",
+    "dropdownmenulabel" => ".menu_label",
+    "dropdownmenuseparator" => ".menu_separator",
+    "dropdownmenuitem" => ".menu_item",
+    "dropdownmenucheckboxitem" => ".menu_item"
+  }
+
+  @explicit_tag_mapping Map.merge(@default_mapping, @custom_mapping)
 
   defp map_tag(tag) do
     case @explicit_tag_mapping[tag] do
@@ -86,6 +93,7 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
       "classname" -> {"class", value}
       "htmlfor" -> {"for", value}
       "aschild" -> nil
+      "x-chunk" -> nil
       _ -> {key, value}
     end
   end

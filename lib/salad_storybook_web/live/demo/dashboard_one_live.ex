@@ -8,13 +8,11 @@ defmodule SaladStorybookWeb.Demo.DashboardOne do
   import SaladUI.Card
   import SaladUI.DropdownMenu
   import SaladUI.Input
-  import SaladUI.Label
   import SaladUI.Menu
   import SaladUI.Sheet
   import SaladUI.Skeleton
   import SaladUI.Table
   import SaladUI.Tabs
-  import SaladUI.Textarea
   import SaladUI.Tooltip
 
   @impl true

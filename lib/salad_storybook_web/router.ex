@@ -24,6 +24,8 @@ defmodule SaladStorybookWeb.Router do
     pipe_through :browser
 
     live "/dashboard-one", Demo.DashboardOne
+    live "/dashboard-two", Demo.DashboardTwo
+    live "/dashboard-three", Demo.DashboardThree
   end
 
   scope "/", SaladStorybookWeb do

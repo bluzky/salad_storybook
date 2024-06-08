@@ -69,7 +69,6 @@ defmodule SaladStorybook.MixProject do
       {:phoenix_storybook, "~> 0.6.0"},
       {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
       {:floki, "~> 0.36"},
-      {:fast_html, "~> 2.3"},
       {:faker, "~> 0.18"},
 
       # salad ui
@@ -77,7 +76,7 @@ defmodule SaladStorybook.MixProject do
 
       # load local salad_ui on dev from local path
       (Mix.env() == :prod &&
-         {:salad_ui, github: "bluzky/salad_ui", tag: "v0.3.0"}) ||
+         {:salad_ui, "~> 0.4"}) ||
         {:salad_ui, path: "../salad_ui"}
     ]
   end
