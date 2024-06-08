@@ -3,6 +3,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
   use SaladStorybookWeb, :demo_view
 
   import SaladStorybookWeb.CoreComponents, only: [icon: 1]
+  import SaladUI.Avatar
   import SaladUI.Badge
   import SaladUI.Button
   import SaladUI.Card
