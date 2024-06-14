@@ -58,7 +58,8 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
                      SaladUI.ScrollArea,
                      SaladUI.Select,
                      SaladUI.Switch,
-                     SaladUI.Separator
+                     SaladUI.Separator,
+                     SaladUI.HoverCard
                    ]
                    |> Enum.map(& &1.__info__(:functions))
                    |> Enum.concat()
