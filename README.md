@@ -46,7 +46,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - [ ] Drawer
 - [x] Dropdown Menu
 - [x] Form
-- [ ] Hover Card
+- [x] Hover Card
 - [x] Input
 - [ ] Input OTP
 - [x] Label
@@ -59,9 +59,9 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - [x] Separator
 - [x] Sheet
 - [x] Skeleton
-- [ ] Slider
-- [ ] Switch
+- [x] Slider
+- [x] Switch
 - [x] Table
 - [x] Tabs
 - [x] Textarea
-- [ ] Tooltip
+- [x] Tooltip
