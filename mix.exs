@@ -76,7 +76,7 @@ defmodule SaladStorybook.MixProject do
 
       # load local salad_ui on dev from local path
       (Mix.env() == :prod &&
-         {:salad_ui, "~> 0.5.0"}) ||
+         {:salad_ui, "~> 0.5.1"}) ||
         {:salad_ui, path: "../salad_ui"}
     ]
   end
