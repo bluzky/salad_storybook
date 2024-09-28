@@ -59,7 +59,8 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
                      SaladUI.Select,
                      SaladUI.Switch,
                      SaladUI.Separator,
-                     SaladUI.HoverCard
+                     SaladUI.HoverCard,
+                     SaladUI.RadioGroup
                    ]
                    |> Enum.map(& &1.__info__(:functions))
                    |> Enum.concat()
@@ -93,6 +94,7 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
     case key do
       "classname" -> {"class", value}
       "htmlfor" -> {"for", value}
+      "defaultvalue" -> {"default-value", value}
       "aschild" -> nil
       "x-chunk" -> nil
       _ -> {key, value}
