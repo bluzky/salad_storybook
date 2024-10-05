@@ -25,61 +25,63 @@ defmodule Storybook.SaladUIComponents.Tab do
       %Variation{
         id: :tab,
         description: "tab trigger target must be the same with target tab_content's id",
-        template: """
-        <.tabs default="account" id="settings" class="w-[400px]">
-          <.tabs_list class="grid w-full grid-cols-2">
-            <.tabs_trigger root="settings" value="account">account</.tabs_trigger>
-            <.tabs_trigger root="settings" value="password">password</.tabs_trigger>
-          </.tabs_list>
-          <.tabs_content value="account">
-            <.card>
-              <.card_header>
-                <.card_title>Account</.card_title>
-                <.card_description>
-                  Make changes to your account here. Click save when you're done.
-                </.card_description>
-              </.card_header>
-              <.card_content class="space-y-2">
-                <div class="space-y-1">
-                  <.label html-for="name">Name</.label>
-                  <.input id="name" default-value="Pedro Duarte" />
-                </div>
-                <div class="space-y-1">
-                  <.label html-for="username">Username</.label>
-                  <.input id="username" default-value="@peduarte" />
-                </div>
-              </.card_content>
-              <.card_footer>
-                <.button>Save changes</.button>
-              </.card_footer>
-            </.card>
-          </.tabs_content>
-          <.tabs_content value="password">
-            <.card>
-              <.card_header>
-                <.card_title>Password</.card_title>
-                <.card_description>
-                  Change your password here. After saving, you'll be logged out.
-                </.card_description>
-              </.card_header>
-              <.card_content class="space-y-2">
-                <div class="space-y-1">
-                  <.label html-for="current">Current password</.label>
-                  <.input id="current" type="password" />
-                </div>
-                <div class="space-y-1">
-                  <.label html-for="new">New password</.label>
-                  <.input id="new" type="password" />
-                </div>
-              </.card_content>
-              <.card_footer>
-                <.button>Save password</.button>
-              </.card_footer>
-            </.card>
-          </.tabs_content>
-        </.tabs>
-        """,
-        attributes: %{}
+        let: :builder,
+        attributes: %{default: "account", id: "settings", class: "w-[400px]"},
+        slots: [
+          """
+                    <.tabs_list class="grid w-full grid-cols-2">
+              <.tabs_trigger builder={builder} value="account">account</.tabs_trigger>
+              <.tabs_trigger builder={builder} value="password">password</.tabs_trigger>
+            </.tabs_list>
+            <.tabs_content value="account">
+              <.card>
+                <.card_header>
+                  <.card_title>Account</.card_title>
+                  <.card_description>
+                    Make changes to your account here. Click save when you're done.
+                  </.card_description>
+                </.card_header>
+                <.card_content class="space-y-2">
+                  <div class="space-y-1">
+                    <.label html-for="name">Name</.label>
+                    <.input id="name" default-value="Pedro Duarte" />
+                  </div>
+                  <div class="space-y-1">
+                    <.label html-for="username">Username</.label>
+                    <.input id="username" default-value="@peduarte" />
+                  </div>
+                </.card_content>
+                <.card_footer>
+                  <.button>Save changes</.button>
+                </.card_footer>
+              </.card>
+            </.tabs_content>
+            <.tabs_content value="password">
+              <.card>
+                <.card_header>
+                  <.card_title>Password</.card_title>
+                  <.card_description>
+                    Change your password here. After saving, you'll be logged out.
+                  </.card_description>
+                </.card_header>
+                <.card_content class="space-y-2">
+                  <div class="space-y-1">
+                    <.label html-for="current">Current password</.label>
+                    <.input id="current" type="password" />
+                  </div>
+                  <div class="space-y-1">
+                    <.label html-for="new">New password</.label>
+                    <.input id="new" type="password" />
+                  </div>
+                </.card_content>
+                <.card_footer>
+                  <.button>Save password</.button>
+                </.card_footer>
+              </.card>
+            </.tabs_content>
+
+          """
+        ]
       }
     ]
   end

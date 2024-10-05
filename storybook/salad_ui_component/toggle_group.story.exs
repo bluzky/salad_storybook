@@ -29,7 +29,7 @@ defmodule Storybook.SaladUIComponents.ToggleGroup do
       %Variation{
         id: :toggle_group_multiple,
         let: :builder,
-        attributes: %{name: "multiple_group", type: "multiple", value: ["bold"]},
+        attributes: %{name: "multiple_group", multiple: true, value: ["bold"]},
         slots: [
           """
           <.toggle_group_item value="bold" builder={builder} aria-label="Toggle bold">
@@ -48,7 +48,7 @@ defmodule Storybook.SaladUIComponents.ToggleGroup do
       %Variation{
         id: :toggle_group_outline,
         let: :builder,
-        attributes: %{name: "multiple_group_outline", type: "multiple", value: ["bold"], variant: "outline", size: "sm"},
+        attributes: %{name: "multiple_group_outline", multiple: true, value: ["bold"], variant: "outline", size: "sm"},
         slots: [
           """
           <.toggle_group_item value="bold" builder={builder} aria-label="Toggle bold">

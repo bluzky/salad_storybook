@@ -8,12 +8,17 @@ defmodule Storybook.Examples.FormDemo.Item do
     field :name, :string
     field :description, :string
     field :material, :string
-    field :sellable, :boolean, default: false
+    field :sellable, :boolean, default: true
+    field :virtual, :boolean, default: false
+    field :color, :string, default: "red"
+    field :scale, :integer, default: 10
+    field :toggle, :boolean
+    field :style, :string
   end
 
   def changeset(user, params \\ %{}) do
     user
-    |> cast(params, [:name, :description, :material, :sellable])
+    |> cast(params, [:name, :description, :material, :sellable, :color, :scale, :virtual])
     |> validate_required([:name, :description])
   end
 end
@@ -22,7 +27,7 @@ defmodule Storybook.Examples.FormDemo do
   @moduledoc false
   use PhoenixStorybook.Story, :example
 
-  import SaladUI.Badge
+  import SaladStorybookWeb.CoreComponents, only: [icon: 1]
   import SaladUI.Button
   import SaladUI.Checkbox
   import SaladUI.Form
@@ -30,8 +35,11 @@ defmodule Storybook.Examples.FormDemo do
   import SaladUI.Label
   import SaladUI.RadioGroup
   import SaladUI.Select
+  import SaladUI.Slider
+  import SaladUI.Switch
   import SaladUI.Textarea
-  import SaladUI.Tooltip
+  import SaladUI.Toggle
+  import SaladUI.ToggleGroup
 
   alias Storybook.Examples.FormDemo.Item
 
@@ -115,6 +123,74 @@ defmodule Storybook.Examples.FormDemo do
                   <.checkbox id="sellable" field={f[:sellable]} />
                   <.label for="sellable">sellable</.label>
                 </div>
+                <div class="flex items-center space-x-2">
+                  <.switch id="virtual" field={f[:virtual]} />
+                  <.label for="virtual">Is virtual?</.label>
+                </div>
+              </.form_item>
+
+              <.form_item>
+                <.label>Color</.label>
+                <.select
+                  :let={select}
+                  field={f[:color]}
+                  id="color-select"
+                  name="color"
+                  placeholder="Select a color"
+                >
+                  <.select_trigger builder={select} class="w-[180px]" />
+                  <.select_content class="w-full" builder={select}>
+                    <.select_group>
+                      <.select_item builder={select} value="red" label="Red"></.select_item>
+                      <.select_item builder={select} value="green" label="Blue"></.select_item>
+                      <.select_item builder={select} value="pink"></.select_item>
+                      <.select_separator />
+                      <.select_item builder={select} disabled value="yellow" label="YELLOW">
+                      </.select_item>
+                      <.select_item builder={select} value="purple"></.select_item>
+                    </.select_group>
+                  </.select_content>
+                </.select>
+              </.form_item>
+              <.form_item>
+                <.label>Scale</.label>
+                <div>
+                  <.slider
+                    class="w-[60%] inline-block"
+                    id="slider-single-step-slider"
+                    max={50}
+                    step={5}
+                    field={f[:scale]}
+                    onchange="document.querySelector('#slider-value').value = this.value"
+                  />
+                  <.input class="inline w-16" type="number" id="slider-value" />
+                </div>
+              </.form_item>
+
+              <.form_item>
+                <.label>Toggle</.label>
+                <div>
+                  <.toggle field={f[:toggle]} size="sm" variant="outline">Toggle me</.toggle>
+                </div>
+              </.form_item>
+
+              <.form_item>
+                <.label>Style</.label>
+                <.toggle_group :let={builder} field={f[:style]} class="justify-start">
+                  <.toggle_group_item value="bold" builder={builder} aria-label="Toggle bold">
+                    <.icon name="hero-bold" class="h-4 w-4" />
+                  </.toggle_group_item>
+                  <.toggle_group_item value="italic" builder={builder} aria-label="Toggle italic">
+                    <.icon name="hero-italic" class="h-4 w-4" />
+                  </.toggle_group_item>
+                  <.toggle_group_item
+                    value="underline"
+                    builder={builder}
+                    aria-label="Toggle underline"
+                  >
+                    <.icon name="hero-underline" class="h-4 w-4" />
+                  </.toggle_group_item>
+                </.toggle_group>
               </.form_item>
 
               <.button type="submit">Submit</.button>

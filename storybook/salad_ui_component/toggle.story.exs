@@ -14,7 +14,7 @@ defmodule Storybook.SaladUIComponents.Toggle do
       %Variation{
         id: :toggle_pressed,
         attributes: %{
-          pressed: true
+          value: true
         },
         slots: ["B"]
       },

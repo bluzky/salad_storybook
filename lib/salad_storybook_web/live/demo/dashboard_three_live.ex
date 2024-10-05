@@ -110,7 +110,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
     </header>
     <main class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
       <div class="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-        <.card x-chunk="dashboard-01-chunk-0">
+        <.card>
           <.card_header class="flex flex-row items-center justify-between space-y-0 pb-2">
             <.card_title class="text-sm font-medium">
               Total Revenue
@@ -124,7 +124,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
             </p>
           </.card_content>
         </.card>
-        <.card x-chunk="dashboard-01-chunk-1">
+        <.card>
           <.card_header class="flex flex-row items-center justify-between space-y-0 pb-2">
             <.card_title class="text-sm font-medium">
               Subscriptions
@@ -138,7 +138,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
             </p>
           </.card_content>
         </.card>
-        <.card x-chunk="dashboard-01-chunk-2">
+        <.card>
           <.card_header class="flex flex-row items-center justify-between space-y-0 pb-2">
             <.card_title class="text-sm font-medium">Sales</.card_title>
             <.icon name="hero-credit-card" class="h-4 w-4 text-muted-foreground" />
@@ -150,7 +150,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
             </p>
           </.card_content>
         </.card>
-        <.card x-chunk="dashboard-01-chunk-3">
+        <.card>
           <.card_header class="flex flex-row items-center justify-between space-y-0 pb-2">
             <.card_title class="text-sm font-medium">Active Now</.card_title>
             <.icon name="hero-cursor-arrow-rays" class="h-4 w-4 text-muted-foreground" />
@@ -164,7 +164,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
         </.card>
       </div>
       <div class="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-5">
-        <.card class="xl:col-span-3" x-chunk="dashboard-01-chunk-4">
+        <.card class="xl:col-span-3">
           <.card_header class="flex flex-row items-center">
             <div class="grid gap-2">
               <.card_title>Transactions</.card_title>
@@ -300,7 +300,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
             </.table>
           </.card_content>
         </.card>
-        <.card class="xl:col-span-2" x-chunk="dashboard-01-chunk-5">
+        <.card class="xl:col-span-2">
           <.card_header>
             <.card_title>Recent Sales</.card_title>
           </.card_header>

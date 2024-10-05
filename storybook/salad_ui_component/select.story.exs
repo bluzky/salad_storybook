@@ -37,16 +37,16 @@ defmodule Storybook.SaladUIComponents.Select do
         let: :select,
         slots: [
           """
-            <.select_trigger instance={select} class="w-[180px]"/>
-            <.select_content class="w-full" instance={select}>
+            <.select_trigger builder={select} class="w-[180px]"/>
+            <.select_content class="w-full" builder={select}>
               <.select_group>
                 <.select_label>Fruits</.select_label>
-                <.select_item instance={select} value="apple" label="Apple"></.select_item>
-                <.select_item instance={select} value="banana" label="Banana"></.select_item>
-                <.select_item instance={select}  value="blueberry"></.select_item>
+                <.select_item builder={select} value="apple" label="Apple"></.select_item>
+                <.select_item builder={select} value="banana" label="Banana"></.select_item>
+                <.select_item builder={select}  value="blueberry"></.select_item>
                 <.select_separator />
-                <.select_item instance={select} disabled value="grapes"></.select_item>
-                <.select_item instance={select} value="pineapple"></.select_item>
+                <.select_item builder={select} disabled value="grapes"></.select_item>
+                <.select_item builder={select} value="pineapple"></.select_item>
               </.select_group>
             </.select_content>
           """
