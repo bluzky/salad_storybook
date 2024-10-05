@@ -311,16 +311,16 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
                 </.card_footer>
               </.card>
             </div>
-            <.tabs id="tabs" default="week">
+            <.tabs :let={builder} id="tabs" default="week">
               <div class="flex items-center">
                 <.tabs_list>
-                  <.tabs_trigger root="tabs" value="week">
+                  <.tabs_trigger builder={builder} value="week">
                     Week
                   </.tabs_trigger>
-                  <.tabs_trigger root="tabs" value="month">
+                  <.tabs_trigger builder={builder} value="month">
                     Month
                   </.tabs_trigger>
-                  <.tabs_trigger root="tabs" value="year">
+                  <.tabs_trigger builder={builder} value="year">
                     Year
                   </.tabs_trigger>
                 </.tabs_list>
