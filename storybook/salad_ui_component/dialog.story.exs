@@ -26,7 +26,7 @@ defmodule Storybook.SaladUIComponents.Dialog do
         Open modal
         </.button>
 
-        <.dialog id="my-modal" on_cancel={JS.navigate("/salad_ui_component/dialog")} class="w-[700px]">
+        <.dialog id="my-modal" on_cancel={hide_modal("my-modal")} class="w-[700px]">
             <.dialog_header>
               <.dialog_title>Edit profile</.dialog_title>
               <.dialog_description>

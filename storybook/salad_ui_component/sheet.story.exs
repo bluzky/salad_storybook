@@ -68,8 +68,11 @@ defmodule Storybook.SaladUIComponents.Sheet do
               </div>
               <.sheet_footer>
                 <.sheet_close target="sheet-single-default">
-                  <.button type="submit">Save changes</.button>
+                  <.button type="submit" phx-click={JS.exec("phx-hide-sheet", to: "#sheet-single-default") |> JS.push("save")}>Save changes</.button>
                 </.sheet_close>
+                <.button phx-click={JS.push("psb-assign")} phx-value-variation_id={:default} phx-value-show={"false"}>
+          Close from back-end
+          </.button>
               </.sheet_footer>
           """
         ]

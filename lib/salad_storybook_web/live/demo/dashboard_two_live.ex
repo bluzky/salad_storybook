@@ -258,7 +258,7 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
         <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
           <div class="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
             <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              <.card class="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
+              <.card class="sm:col-span-2">
                 <.card_header class="pb-3">
                   <.card_title>
                     Your Orders
@@ -274,7 +274,7 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
                   </.button>
                 </.card_footer>
               </.card>
-              <.card x-chunk="dashboard-05-chunk-1">
+              <.card>
                 <.card_header class="pb-2">
                   <.card_description>
                     This Week
@@ -311,16 +311,16 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
                 </.card_footer>
               </.card>
             </div>
-            <.tabs id="tabs" default="week">
+            <.tabs :let={builder} id="tabs" default="week">
               <div class="flex items-center">
                 <.tabs_list>
-                  <.tabs_trigger root="tabs" value="week">
+                  <.tabs_trigger builder={builder} value="week">
                     Week
                   </.tabs_trigger>
-                  <.tabs_trigger root="tabs" value="month">
+                  <.tabs_trigger builder={builder} value="month">
                     Month
                   </.tabs_trigger>
-                  <.tabs_trigger root="tabs" value="year">
+                  <.tabs_trigger builder={builder} value="year">
                     Year
                   </.tabs_trigger>
                 </.tabs_list>
@@ -592,7 +592,7 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
             </.tabs>
           </div>
           <div>
-            <.card class="overflow-hidden" x-chunk="dashboard-05-chunk-4">
+            <.card class="overflow-hidden">
               <.card_header class="flex flex-row items-start bg-muted/50">
                 <div class="grid gap-0.5">
                   <.card_title class="group flex items-center gap-2 text-lg">

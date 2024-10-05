@@ -10,10 +10,9 @@
 //   window.storybook = { Hooks, Params, Uploaders };
 // })();
 
-
 // If your components require alpinejs, you'll need to start
 // alpine after the DOM is loaded and pass in an onBeforeElUpdated
-// 
+//
 // import Alpine from 'alpinejs'
 // window.Alpine = Alpine
 // document.addEventListener('DOMContentLoaded', () => {
@@ -33,3 +32,9 @@
 //     }
 //   };
 // })();
+
+window.addEventListener("phx:js-exec", ({ detail }) => {
+  document.querySelectorAll(detail.to).forEach((el) => {
+    liveSocket.execJS(el, el.getAttribute(detail.attr));
+  });
+});
