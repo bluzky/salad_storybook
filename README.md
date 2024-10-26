@@ -28,7 +28,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## List of components
 
-- [ ] Accordion
+- [x] Accordion
 - [x] Alert
 - [ ] Alert Dialog
 - [x] Avatar
@@ -53,7 +53,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - [x] Pagination
 - [ ] Popover
 - [x] Progress
-- [ ] Radio Group
+- [x] Radio Group
 - [x] Scroll Area
 - [x] Select
 - [x] Separator
