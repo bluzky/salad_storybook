@@ -1,31 +1,9 @@
-defmodule SaladStorybookWeb.DemoChart do
-  @moduledoc false
-  use SaladUI.Chart
-
-  @impl true
-  def render(assigns) do
-    ~H"""
-    <div>
-      <.chart id={@id} chart_config={@chart_config} chart_data={@chart_data} />
-    </div>
-    """
-  end
-end
-
 defmodule Storybook.SaladUIComponents.Chart do
   @moduledoc false
-  use PhoenixStorybook.Story, :live_component
+  use PhoenixStorybook.Story, :component
 
-  def component, do: SaladStorybookWeb.DemoChart
+  def function, do: &SaladUI.Chart.chart/1
   def container, do: {:div, class: "w-[40%]"}
-
-  def attributes,
-    do: [
-      %Attr{id: :id, type: :string, required: true},
-      %Attr{id: :name, type: :string, required: false, doc: "Name of the chart for screen readers"},
-      %Attr{id: :chart_config, type: :map, required: true},
-      %Attr{id: :chart_data, type: :list, required: true}
-    ]
 
   def variations do
     [

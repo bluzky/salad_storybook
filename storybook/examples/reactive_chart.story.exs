@@ -3,8 +3,7 @@ defmodule Storybook.Examples.ReactiveChart do
   use PhoenixStorybook.Story, :example
 
   import SaladUI.Button
-
-  alias SaladStorybookWeb.DemoChart
+  import SaladUI.Chart
 
   def doc do
     "An example of a chart that auto updates whenever its data changes."
@@ -49,8 +48,7 @@ defmodule Storybook.Examples.ReactiveChart do
   def render(assigns) do
     ~H"""
     <div class="container flex flex-col gap-y-4">
-      <.live_component
-        module={DemoChart}
+      <.chart
         id="reactive-chart"
         chart_config={@chart_config}
         chart_data={@chart_data}

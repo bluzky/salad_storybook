@@ -35,3 +35,6 @@ salad_storybook-*.tar
 npm-debug.log
 /assets/node_modules/
 .elixir-tools
+
+.ctags.d/
+.tags
