@@ -14,6 +14,8 @@ defmodule Storybook.SaladUIComponents.Checkbox do
         <.checkbox id="checked" value={true}/>
         <.label for="checked">I'm a label</.label>
         </div>
+
+
         """,
         attributes: %{
           value: true

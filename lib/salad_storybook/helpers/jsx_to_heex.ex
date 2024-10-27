@@ -62,7 +62,9 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
                      SaladUI.HoverCard,
                      SaladUI.RadioGroup,
                      SaladUI.ToggleGroup,
-                     SaladUI.Toggle
+                     SaladUI.Toggle,
+                     SaladUI.Accordion,
+                     SaladUI.Popover
                    ]
                    |> Enum.map(& &1.__info__(:functions))
                    |> Enum.concat()
