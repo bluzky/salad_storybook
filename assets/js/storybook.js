@@ -2,13 +2,13 @@
 // require connect parameters, uncomment the following lines and declare them as
 // such:
 //
-// import * as Hooks from "./hooks";
+import * as Hooks from "./hooks";
 // import * as Params from "./params";
 // import * as Uploaders from "./uploaders";
 
-// (function () {
-//   window.storybook = { Hooks, Params, Uploaders };
-// })();
+(function () {
+  window.storybook = { Hooks };
+})();
 
 // If your components require alpinejs, you'll need to start
 // alpine after the DOM is loaded and pass in an onBeforeElUpdated
