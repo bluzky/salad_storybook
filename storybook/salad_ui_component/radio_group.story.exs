@@ -1,4 +1,4 @@
-defmodule Storybook.SaladUIComponents.Checkbox do
+defmodule Storybook.SaladUIComponents.RadioGroup do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 

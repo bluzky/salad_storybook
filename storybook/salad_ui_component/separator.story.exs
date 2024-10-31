@@ -1,4 +1,4 @@
-defmodule Storybook.SaladUIComponents.Label do
+defmodule Storybook.SaladUIComponents.Separator do
   @moduledoc false
   use PhoenixStorybook.Story, :component
 
