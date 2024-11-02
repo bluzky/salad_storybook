@@ -17,7 +17,8 @@ defmodule Storybook.SaladUIComponents.AlertDialog do
          alert_dialog_footer: 1,
          alert_dialog_cancel: 1,
          alert_dialog_action: 1,
-         alert_dialog_content: 1
+         alert_dialog_content: 1,
+         hide_alert_dialog: 1
        ]},
       {SaladUI.Button, [button: 1]}
     ]
@@ -43,7 +44,7 @@ defmodule Storybook.SaladUIComponents.AlertDialog do
            </.alert_dialog_header>
            <.alert_dialog_footer>
              <.alert_dialog_cancel builder={builder}>Cancel</.alert_dialog_cancel>
-             <.alert_dialog_action phx-click={JS.navigate("/welcome")}>Continue</.alert_dialog_action>
+             <.alert_dialog_action phx-click={hide_alert_dialog(builder) |> JS.push("welcome")}>Continue</.alert_dialog_action>
            </.alert_dialog_footer>
           </.alert_dialog_content>
           """
