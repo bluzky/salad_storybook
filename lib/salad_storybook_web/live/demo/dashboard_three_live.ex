@@ -82,7 +82,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
               class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"
             />
             <.input
-              type="search"
+              type="text"
               placeholder="Search products..."
               class="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
             />
@@ -172,7 +172,7 @@ defmodule SaladStorybookWeb.Demo.DashboardThree do
                 Recent transactions from your store.
               </.card_description>
             </div>
-            <.button asChild size="sm" class="ml-auto gap-1">
+            <.button size="sm" class="ml-auto gap-1">
               <.link href="#">
                 View All <.icon name="hero-arrow-up-right" class="h-4 w-4" />
               </.link>

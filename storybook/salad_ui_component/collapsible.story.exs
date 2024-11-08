@@ -7,7 +7,8 @@ defmodule Storybook.SaladUIComponents.Collapsible do
   def function, do: &Collapsible.collapsible/1
 
   def imports,
-    do: [{SaladUI.Collapsible, [collapsible_trigger: 1, collapsible_content: 1]}, {SaladUI.Button, [button: 1]}]
+    do: [{SaladUI.Collapsible, [collapsible_trigger: 1, collapsible_content: 1]}, {SaladUI.Button, [button: 1]},      {SaladStorybookWeb.CoreComponents, [icon: 1]}
+]
 
   def variations do
     [
@@ -23,7 +24,7 @@ defmodule Storybook.SaladUIComponents.Collapsible do
             </h4>
             <.collapsible_trigger builder={builder}>
               <.button variant="ghost" size="sm" class="w-9 p-0">
-                <chevronsupdown class="h-4 w-4"></chevronsupdown>
+                <.icon name="hero-chevron-up-down" class="h-4 w-4"></.icon>
                 <span class="sr-only">
                   Toggle
                 </span>

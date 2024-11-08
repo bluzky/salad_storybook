@@ -289,7 +289,7 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
                   </div>
                 </.card_content>
                 <.card_footer>
-                  <.progress value="25" aria-label="25% increase"></.progress>
+                  <.progress value={25} aria-label="25% increase"/>
                 </.card_footer>
               </.card>
               <.card>
@@ -307,7 +307,7 @@ defmodule SaladStorybookWeb.Demo.DashboardTwo do
                   </div>
                 </.card_content>
                 <.card_footer>
-                  <.progress value="12" aria-label="12% increase"></.progress>
+                  <.progress value={12} aria-label="12% increase"/>
                 </.card_footer>
               </.card>
             </div>
