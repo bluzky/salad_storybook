@@ -17,8 +17,19 @@ defmodule SaladStorybookWeb.CoreComponents do
   use Phoenix.Component
 
   import SaladStorybookWeb.Gettext
+  import SaladUI.Alert
+  import SaladUI.Form, except: [form: 1]
+  import SaladUI.Table, except: [table: 1]
 
   alias Phoenix.LiveView.JS
+  alias SaladUI.Button
+  alias SaladUI.Checkbox
+  alias SaladUI.Dialog
+  alias SaladUI.Input
+  alias SaladUI.Label
+  alias SaladUI.Slider
+  alias SaladUI.Table
+  alias SaladUI.Textarea
 
   @doc """
   Renders a modal.
@@ -44,49 +55,9 @@ defmodule SaladStorybookWeb.CoreComponents do
 
   def modal(assigns) do
     ~H"""
-    <div
-      id={@id}
-      phx-mounted={@show && show_modal(@id)}
-      phx-remove={hide_modal(@id)}
-      data-cancel={JS.exec(@on_cancel, "phx-remove")}
-      class="relative z-50 hidden"
-    >
-      <div id={"#{@id}-bg"} class="bg-zinc-50/90 fixed inset-0 transition-opacity" aria-hidden="true" />
-      <div
-        class="fixed inset-0 overflow-y-auto"
-        aria-labelledby={"#{@id}-title"}
-        aria-describedby={"#{@id}-description"}
-        role="dialog"
-        aria-modal="true"
-        tabindex="0"
-      >
-        <div class="flex min-h-full items-center justify-center">
-          <div class="w-full max-w-3xl p-4 sm:p-6 lg:py-8">
-            <.focus_wrap
-              id={"#{@id}-container"}
-              phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
-              phx-key="escape"
-              phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
-              class="shadow-zinc-700/10 ring-zinc-700/10 relative hidden rounded-2xl bg-white p-14 shadow-lg ring-1 transition"
-            >
-              <div class="absolute top-6 right-5">
-                <button
-                  phx-click={JS.exec("data-cancel", to: "##{@id}")}
-                  type="button"
-                  class="-m-3 flex-none p-3 opacity-20 hover:opacity-40"
-                  aria-label={gettext("close")}
-                >
-                  <.icon name="hero-x-mark-solid" class="h-5 w-5" />
-                </button>
-              </div>
-              <div id={"#{@id}-content"}>
-                <%= render_slot(@inner_block) %>
-              </div>
-            </.focus_wrap>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Dialog.dialog id={@id} show={@show} on_cancel={@on_cancel}>
+      <%= render_slot(@inner_block) %>
+    </Dialog.dialog>
     """
   end
 
@@ -110,28 +81,24 @@ defmodule SaladStorybookWeb.CoreComponents do
     assigns = assign_new(assigns, :id, fn -> "flash-#{assigns.kind}" end)
 
     ~H"""
-    <div
+    <.alert
       :if={msg = render_slot(@inner_block) || Phoenix.Flash.get(@flash, @kind)}
       id={@id}
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
-      class={[
-        "fixed top-2 right-2 z-50 mr-2 w-80 rounded-lg p-3 ring-1 sm:w-96",
-        @kind == :info && "bg-emerald-50 fill-cyan-900 text-emerald-800 ring-emerald-500",
-        @kind == :error && "bg-rose-50 fill-rose-900 text-rose-900 shadow-md ring-rose-500"
-      ]}
+      variant={(@kind == :error && "destructive") || "default"}
+      class="fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg"
       {@rest}
     >
-      <p :if={@title} class="flex items-center gap-1.5 text-sm font-semibold leading-6">
-        <.icon :if={@kind == :info} name="hero-information-circle-mini" class="h-4 w-4" />
-        <.icon :if={@kind == :error} name="hero-exclamation-circle-mini" class="h-4 w-4" />
-        <%= @title %>
-      </p>
-      <p class="mt-2 text-sm leading-5"><%= msg %></p>
+      <.icon :if={@kind == :info} name="hero-information-circle" class="h-4 w-4" />
+      <.icon :if={@kind == :error} name="hero-exclamation-circle" class="h-4 w-4" />
+
+      <.alert_title :if={@title}><%= @title %></.alert_title>
+      <.alert_description><%= msg %></.alert_description>
       <button type="button" class="group absolute top-1 right-1 p-2" aria-label={gettext("close")}>
         <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
       </button>
-    </div>
+    </.alert>
     """
   end
 
@@ -148,28 +115,29 @@ defmodule SaladStorybookWeb.CoreComponents do
   def flash_group(assigns) do
     ~H"""
     <div id={@id}>
-      <.flash kind={:info} title="Success!" flash={@flash} />
-      <.flash kind={:error} title="Error!" flash={@flash} />
+      <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
+      <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
       <.flash
         id="client-error"
         kind={:error}
-        title="We can't find the internet"
+        title={gettext("We can't find the internet")}
         phx-disconnected={show(".phx-client-error #client-error")}
         phx-connected={hide("#client-error")}
         hidden
       >
-        Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+        <%= gettext("Attempting to reconnect") %>
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
       </.flash>
 
       <.flash
         id="server-error"
         kind={:error}
-        title="Something went wrong!"
+        title={gettext("Something went wrong!")}
         phx-disconnected={show(".phx-server-error #server-error")}
         phx-connected={hide("#server-error")}
         hidden
       >
-        Hang in there while we get back on track
+        <%= gettext("Hang in there while we get back on track") %>
         <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
       </.flash>
     </div>
@@ -189,7 +157,7 @@ defmodule SaladStorybookWeb.CoreComponents do
         </:actions>
       </.simple_form>
   """
-  attr :for, :any, required: true, doc: "the datastructure for the form"
+  attr :for, :any, required: true, doc: "the data structure for the form"
   attr :as, :any, default: nil, doc: "the server side parameter to collect all input under"
 
   attr :rest, :global,
@@ -228,17 +196,16 @@ defmodule SaladStorybookWeb.CoreComponents do
 
   def button(assigns) do
     ~H"""
-    <button
+    <Button.button
       type={@type}
       class={[
-        "rounded-lg bg-zinc-900 px-3 py-2 hover:bg-zinc-700 phx-submit-loading:opacity-75",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "phx-submit-loading:opacity-75",
         @class
       ]}
       {@rest}
     >
       <%= render_slot(@inner_block) %>
-    </button>
+    </Button.button>
     """
   end
 
@@ -260,7 +227,8 @@ defmodule SaladStorybookWeb.CoreComponents do
     * For live file uploads, see `Phoenix.Component.live_file_input/1`
 
   See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-  for more information.
+  for more information. Unsupported types, such as hidden and radio,
+  are best written directly in your templates.
 
   ## Examples
 
@@ -274,8 +242,8 @@ defmodule SaladStorybookWeb.CoreComponents do
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
-               range radio search select tel text textarea time url week)
+    values: ~w(checkbox color date datetime-local email file month number password
+               range search select tel text textarea time url week)
 
   attr :field, Phoenix.HTML.FormField, doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
@@ -288,46 +256,32 @@ defmodule SaladStorybookWeb.CoreComponents do
   attr :rest, :global, include: ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
                 multiple pattern placeholder readonly required rows size step)
 
-  slot :inner_block
-
   def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    errors = field.errors || []
+
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
+    |> assign(:errors, Enum.map(errors, &translate_error(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> input()
   end
 
   def input(%{type: "checkbox"} = assigns) do
-    assigns =
-      assign_new(assigns, :checked, fn ->
-        Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
-      end)
-
     ~H"""
-    <div phx-feedback-for={@name}>
-      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
-        <input type="hidden" name={@name} value="false" />
-        <input
-          type="checkbox"
-          id={@id}
-          name={@name}
-          value="true"
-          checked={@checked}
-          class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
-          {@rest}
-        />
+    <div>
+      <.form_label error={not Enum.empty?(@errors)} class="flex items-center gap-4 leading-6">
+        <Checkbox.checkbox value={@value} id={@id} name={@name} {@rest} />
         <%= @label %>
-      </label>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      </.form_label>
+      <.form_message errors={@errors} />
     </div>
     """
   end
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
+    <div>
       <.label for={@id}><%= @label %></.label>
       <select
         id={@id}
@@ -339,51 +293,62 @@ defmodule SaladStorybookWeb.CoreComponents do
         <option :if={@prompt} value=""><%= @prompt %></option>
         <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
       </select>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.form_message errors={@errors} />
     </div>
     """
   end
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
-      <.label for={@id}><%= @label %></.label>
-      <textarea
+    <.form_item>
+      <.form_label error={not Enum.empty?(@errors)}><%= @label %></.form_label>
+      <Textarea.textarea
         id={@id}
         name={@name}
+        value={Phoenix.HTML.Form.normalize_value("textarea", @value)}
+        phx-debounce="500"
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          "min-h-[6rem] phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          @errors != [] && "border-destructive focus:border-destructive"
         ]}
         {@rest}
-      ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
-      <.error :for={msg <- @errors}><%= msg %></.error>
-    </div>
+      />
+      <.form_message errors={@errors} />
+    </.form_item>
+    """
+  end
+
+  def input(%{type: "range"} = assigns) do
+    ~H"""
+    <.form_item>
+      <.form_label error={not Enum.empty?(@errors)}><%= @label %></.form_label>
+      <Slider.slider
+        id={@id}
+        name={@name}
+        value={Phoenix.HTML.Form.normalize_value("range", @value)}
+        {@rest}
+      />
+      <.form_message errors={@errors} />
+    </.form_item>
     """
   end
 
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
-      <.label for={@id}><%= @label %></.label>
-      <input
+    <.form_item>
+      <.form_label error={not Enum.empty?(@errors)}><%= @label %></.form_label>
+      <Input.input
+        id={@id}
         type={@type}
         name={@name}
-        id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
+          @errors != [] && "border-destructive focus:border-destructive"
         ]}
         {@rest}
       />
-      <.error :for={msg <- @errors}><%= msg %></.error>
-    </div>
+      <.form_message errors={@errors} />
+    </.form_item>
     """
   end
 
@@ -395,23 +360,9 @@ defmodule SaladStorybookWeb.CoreComponents do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
+    <Label.label for={@for}>
       <%= render_slot(@inner_block) %>
-    </label>
-    """
-  end
-
-  @doc """
-  Generates a generic error message.
-  """
-  slot :inner_block, required: true
-
-  def error(assigns) do
-    ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-rose-600 phx-no-feedback:hidden">
-      <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
-      <%= render_slot(@inner_block) %>
-    </p>
+    </Label.label>
     """
   end
 
@@ -428,10 +379,10 @@ defmodule SaladStorybookWeb.CoreComponents do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8 text-zinc-800">
+        <h1 class="text-lg font-semibold leading-8 text-foreground">
           <%= render_slot(@inner_block) %>
         </h1>
-        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
+        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-foreground">
           <%= render_slot(@subtitle) %>
         </p>
       </div>
@@ -439,6 +390,15 @@ defmodule SaladStorybookWeb.CoreComponents do
     </header>
     """
   end
+
+  @doc """
+  Renders a header with title.
+  """
+  attr :class, :string, default: nil
+
+  slot :inner_block, required: true
+  slot :subtitle
+  slot :actions
 
   @doc ~S"""
   Renders a table with generic styling.
@@ -473,47 +433,40 @@ defmodule SaladStorybookWeb.CoreComponents do
 
     ~H"""
     <div class="overflow-y-auto px-4 sm:overflow-visible sm:px-0">
-      <table class="w-[40rem] mt-11 sm:w-full">
-        <thead class="text-left text-sm leading-6 text-zinc-500">
-          <tr>
-            <th :for={col <- @col} class="p-0 pr-6 pb-4 font-normal"><%= col[:label] %></th>
-            <th :if={@action != []} class="relative p-0 pb-4">
+      <Table.table class="w-[40rem] sm:w-full">
+        <.table_header>
+          <.table_row>
+            <.table_head :for={col <- @col}>
+              <%= col[:label] %>
+            </.table_head>
+            <.table_head :if={@action != []} class="relative p-0 pb-4">
               <span class="sr-only"><%= gettext("Actions") %></span>
-            </th>
-          </tr>
-        </thead>
-        <tbody
+            </.table_head>
+          </.table_row>
+        </.table_header>
+        <.table_body
           id={@id}
           phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}
           class="relative divide-y divide-zinc-100 border-t border-zinc-200 text-sm leading-6 text-zinc-700"
         >
-          <tr :for={row <- @rows} id={@row_id && @row_id.(row)} class="group hover:bg-zinc-50">
-            <td
+          <table_row :for={row <- @rows} id={@row_id && @row_id.(row)}>
+            <.table_cell
               :for={{col, i} <- Enum.with_index(@col)}
               phx-click={@row_click && @row_click.(row)}
-              class={["relative p-0", @row_click && "hover:cursor-pointer"]}
+              class={[@row_click && "hover:cursor-pointer"]}
             >
-              <div class="block py-4 pr-6">
-                <span class="absolute -inset-y-px right-0 -left-4 group-hover:bg-zinc-50 sm:rounded-l-xl" />
-                <span class={["relative", i == 0 && "font-semibold text-zinc-900"]}>
-                  <%= render_slot(col, @row_item.(row)) %>
-                </span>
-              </div>
-            </td>
-            <td :if={@action != []} class="relative w-14 p-0">
+              <%= render_slot(col, @row_item.(row)) %>
+            </.table_cell>
+            <.table_cell :if={@action != []} class="relative w-14 p-0">
               <div class="relative whitespace-nowrap py-4 text-right text-sm font-medium">
-                <span class="absolute -inset-y-px -right-4 left-0 group-hover:bg-zinc-50 sm:rounded-r-xl" />
-                <span
-                  :for={action <- @action}
-                  class="relative ml-4 font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
-                >
+                <span :for={action <- @action} class="relative ml-4 font-semibold">
                   <%= render_slot(action, @row_item.(row)) %>
                 </span>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </.table_cell>
+          </table_row>
+        </.table_body>
+      </Table.table>
     </div>
     """
   end
@@ -537,8 +490,8 @@ defmodule SaladStorybookWeb.CoreComponents do
     <div class="mt-14">
       <dl class="-my-4 divide-y divide-zinc-100">
         <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8">
-          <dt class="w-1/4 flex-none text-zinc-500"><%= item.title %></dt>
-          <dd class="text-zinc-700"><%= render_slot(item) %></dd>
+          <dt class="w-1/4 flex-none font-medium text-muted-foreground"><%= item.title %></dt>
+          <dd class="text-foreground"><%= render_slot(item) %></dd>
         </div>
       </dl>
     </div>
@@ -560,7 +513,7 @@ defmodule SaladStorybookWeb.CoreComponents do
     <div class="mt-16">
       <.link
         navigate={@navigate}
-        class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
+        class="text-sm font-semibold leading-6 text-primary hover:text-primary/90"
       >
         <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
         <%= render_slot(@inner_block) %>
@@ -579,8 +532,8 @@ defmodule SaladStorybookWeb.CoreComponents do
   You can customize the size and colors of the icons by setting
   width, height, and background color classes.
 
-  Icons are extracted from your `assets/vendor/heroicons` directory and bundled
-  within your compiled app.css by the plugin in your `assets/tailwind.config.js`.
+  Icons are extracted from the `deps/heroicons` directory and bundled within
+  your compiled app.css by the plugin in your `assets/tailwind.config.js`.
 
   ## Examples
 
@@ -601,9 +554,10 @@ defmodule SaladStorybookWeb.CoreComponents do
   def show(js \\ %JS{}, selector) do
     JS.show(js,
       to: selector,
+      time: 300,
       transition:
-        {"transition-all transform ease-out duration-300", "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
-         "opacity-100 translate-y-0 sm:scale-100"}
+        {"transition-all transform ease-out duration-300", "opacity-0 .translate-y-4 sm:.translate-y-0 sm:scale-95",
+         "opacity-100 .translate-y-0 sm:scale-100"}
     )
   end
 
@@ -612,33 +566,17 @@ defmodule SaladStorybookWeb.CoreComponents do
       to: selector,
       time: 200,
       transition:
-        {"transition-all transform ease-in duration-200", "opacity-100 translate-y-0 sm:scale-100",
-         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"}
+        {"transition-all transform ease-in duration-200", "opacity-100 .translate-y-0 sm:scale-100",
+         "opacity-0 .translate-y-4 sm:.translate-y-0 sm:scale-95"}
     )
   end
 
   def show_modal(js \\ %JS{}, id) when is_binary(id) do
-    js
-    |> JS.show(to: "##{id}")
-    |> JS.show(
-      to: "##{id}-bg",
-      transition: {"transition-all transform ease-out duration-300", "opacity-0", "opacity-100"}
-    )
-    |> show("##{id}-container")
-    |> JS.add_class("overflow-hidden", to: "body")
-    |> JS.focus_first(to: "##{id}-content")
+    Dialog.show_modal(js, id)
   end
 
   def hide_modal(js \\ %JS{}, id) do
-    js
-    |> JS.hide(
-      to: "##{id}-bg",
-      transition: {"transition-all transform ease-in duration-200", "opacity-100", "opacity-0"}
-    )
-    |> hide("##{id}-container")
-    |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
-    |> JS.remove_class("overflow-hidden", to: "body")
-    |> JS.pop_focus()
+    Dialog.hide_modal(js, id)
   end
 
   @doc """
@@ -646,19 +584,19 @@ defmodule SaladStorybookWeb.CoreComponents do
   """
   def translate_error({msg, opts}) do
     # When using gettext, we typically pass the strings we want
-    # to translate as a static argument:
+    # to .translate as a static argument:
     #
     #     # Translate the number of files with plural rules
     #     dngettext("errors", "1 file", "%{count} files", count)
     #
     # However the error messages in our forms and APIs are generated
-    # dynamically, so we need to translate them by calling Gettext
+    # dynamically, so we need to .translate them by calling Gettext
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(SaladStorybookWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(NewStoryWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SaladStorybookWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(NewStoryWeb.Gettext, "errors", msg, opts)
     end
   end
 
@@ -666,7 +604,6 @@ defmodule SaladStorybookWeb.CoreComponents do
   Translates the errors for a field from a keyword list of errors.
   """
   def translate_errors(errors, field) when is_list(errors) do
-    for {^field, {msg, opts}} <- errors,
-        do: translate_error({msg, opts})
+    for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
 end
