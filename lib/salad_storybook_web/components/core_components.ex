@@ -391,15 +391,6 @@ defmodule SaladStorybookWeb.CoreComponents do
     """
   end
 
-  @doc """
-  Renders a header with title.
-  """
-  attr :class, :string, default: nil
-
-  slot :inner_block, required: true
-  slot :subtitle
-  slot :actions
-
   @doc ~S"""
   Renders a table with generic styling.
 
@@ -449,9 +440,9 @@ defmodule SaladStorybookWeb.CoreComponents do
           phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}
           class="relative divide-y divide-zinc-100 border-t border-zinc-200 text-sm leading-6 text-zinc-700"
         >
-          <table_row :for={row <- @rows} id={@row_id && @row_id.(row)}>
+          <.table_row :for={row <- @rows} id={@row_id && @row_id.(row)}>
             <.table_cell
-              :for={{col, i} <- Enum.with_index(@col)}
+              :for={col <- @col}
               phx-click={@row_click && @row_click.(row)}
               class={[@row_click && "hover:cursor-pointer"]}
             >
@@ -464,7 +455,7 @@ defmodule SaladStorybookWeb.CoreComponents do
                 </span>
               </div>
             </.table_cell>
-          </table_row>
+          </.table_row>
         </.table_body>
       </Table.table>
     </div>
