@@ -66,7 +66,8 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
                      SaladUI.Accordion,
                      SaladUI.Popover,
                      SaladUI.Collapsible,
-                     SaladUI.AlertDialog
+                     SaladUI.AlertDialog,
+                     SaladUI.Sidebar
                    ]
                    |> Enum.map(& &1.__info__(:functions))
                    |> Enum.concat()
