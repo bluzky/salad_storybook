@@ -61,7 +61,6 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
-config :tails, colors_file: Path.join(File.cwd!(), "assets/tailwind.colors.json")
 
 # Configures Elixir's Logger
 config :logger, :console,

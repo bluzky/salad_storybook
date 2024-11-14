@@ -44,7 +44,6 @@ RUN mkdir config
 # to be re-compiled.
 COPY config/config.exs config/${MIX_ENV}.exs config/
 COPY assets assets
-# assets is required to build tails
 RUN mix deps.compile
 
 COPY priv priv
