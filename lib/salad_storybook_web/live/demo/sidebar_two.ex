@@ -1,4 +1,4 @@
-defmodule SaladStorybookWeb.Demo.SidebarOne do
+defmodule SaladStorybookWeb.Demo.SidebarTwo do
   @moduledoc false
   use SaladStorybookWeb, :demo_view
   use SaladUI
@@ -149,22 +149,33 @@ defmodule SaladStorybookWeb.Demo.SidebarOne do
           <.search_form />
         </.sidebar_header>
         <.sidebar_content>
-          <.sidebar_group :for={group <- @data.nav_main}>
-            <.sidebar_group_label>
-              <%= group.title %>
-            </.sidebar_group_label>
-            <.sidebar_group_content>
-              <.sidebar_menu>
-                <.sidebar_menu_item :for={item <- group.items}>
-                  <.sidebar_menu_button is_active={item[:is_active]}>
-                    <a href={item.url}>
-                      <%= item.title %>
-                    </a>
-                  </.sidebar_menu_button>
-                </.sidebar_menu_item>
-              </.sidebar_menu>
-            </.sidebar_group_content>
-          </.sidebar_group>
+          <.collapsible
+            :for={group <- @data.nav_main}
+            title={group.title}
+            id={id(group.title)}
+            open={group[:open] != false}
+            class="group/collapsible"
+          >
+            <.sidebar_group>
+              <.collapsible_trigger class="duration-200 flex h-8 shrink-0 items-center rounded-md px-2 font-medium outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                <%= group.title %>
+                <Lucideicons.chevron_right class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+              </.collapsible_trigger>
+              <.collapsible_content>
+                <.sidebar_group_content>
+                  <.sidebar_menu>
+                    <.sidebar_menu_item :for={item <- group.items}>
+                      <.sidebar_menu_button is_active={item[:is_active]}>
+                        <a href={item.url}>
+                          <%= item.title %>
+                        </a>
+                      </.sidebar_menu_button>
+                    </.sidebar_menu_item>
+                  </.sidebar_menu>
+                </.sidebar_group_content>
+              </.collapsible_content>
+            </.sidebar_group>
+          </.collapsible>
         </.sidebar_content>
         <.sidebar_rail></.sidebar_rail>
       </.sidebar>
