@@ -17,6 +17,7 @@ defmodule SaladStorybook.Application do
       # Start a worker by calling: SaladStorybook.Worker.start_link(arg)
       # {SaladStorybook.Worker, arg},
       # Start to serve requests, typically the last entry
+      SaladUI.Cache,
       SaladStorybookWeb.Endpoint
     ]
 

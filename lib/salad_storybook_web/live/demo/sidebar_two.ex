@@ -157,10 +157,10 @@ defmodule SaladStorybookWeb.Demo.SidebarTwo do
             class="group/collapsible"
           >
             <.sidebar_group>
-              <.collapsible_trigger class="duration-200 flex h-8 shrink-0 items-center rounded-md px-2 font-medium outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+              <.sidebar_group_label as={&collapsible_trigger/1} class="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                 <%= group.title %>
                 <Lucideicons.chevron_right class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
-              </.collapsible_trigger>
+                </.sidebar_group_label>
               <.collapsible_content>
                 <.sidebar_group_content>
                   <.sidebar_menu>
