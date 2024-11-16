@@ -236,7 +236,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFour do
           <.label for="search" class="sr-only">
             Search
           </.label>
-          <.sidebar_input id="search" placeholder="Search the docs..." class="pl-8"></.sidebar_input>
+          <.sidebar_input id="search" placeholder="Search the docs..." class="pl-8"/>
           <search class="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 select-none opacity-50">
           </search>
         </.sidebar_group_content>

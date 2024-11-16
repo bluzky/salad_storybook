@@ -103,7 +103,6 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
       "classname" -> {"class", value}
       "htmlfor" -> {"for", value}
       "defaultvalue" -> {"default-value", value}
-      "aschild" -> nil
       "x-chunk" -> nil
       _ -> {key, value}
     end
