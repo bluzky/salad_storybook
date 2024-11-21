@@ -157,10 +157,13 @@ defmodule SaladStorybookWeb.Demo.SidebarTwo do
             class="group/collapsible"
           >
             <.sidebar_group>
-              <.sidebar_group_label as={&collapsible_trigger/1} class="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+              <.sidebar_group_label
+                as_tag={&collapsible_trigger/1}
+                class="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              >
                 <%= group.title %>
                 <Lucideicons.chevron_right class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
-                </.sidebar_group_label>
+              </.sidebar_group_label>
               <.collapsible_content>
                 <.sidebar_group_content>
                   <.sidebar_menu>

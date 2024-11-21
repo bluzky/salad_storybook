@@ -32,7 +32,15 @@ defmodule Storybook.MyPage do
         </a>
       </div>
       <div class="text-center pb-8 flex justify-center">
-        <a href='https://ko-fi.com/F1F1CEZ91' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+        <a href="https://ko-fi.com/F1F1CEZ91" target="_blank">
+          <img
+            height="36"
+            style="border:0px;height:36px;"
+            src="https://storage.ko-fi.com/cdn/kofi2.png?v=6"
+            border="0"
+            alt="Buy Me a Coffee at ko-fi.com"
+          />
+        </a>
       </div>
     </div>
     <div class="flex min-h-screen w-full flex-col border rounded-lg overflow-hidden">

@@ -151,7 +151,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
           <.sidebar_trigger target="main-sidebar" class="-ml-1">
             <Lucideicons.panel_left class="w-4 h-4" />
           </.sidebar_trigger>
-          <.separator orientation="vertical" class="mr-2 h-4"/>
+          <.separator orientation="vertical" class="mr-2 h-4" />
           <.breadcrumb>
             <.breadcrumb_list>
               <.breadcrumb_item class="hidden md:block">
@@ -159,7 +159,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
                   Building Your Application
                 </.breadcrumb_link>
               </.breadcrumb_item>
-              <.breadcrumb_separator class="hidden md:block"/>
+              <.breadcrumb_separator class="hidden md:block" />
               <.breadcrumb_item>
                 <.breadcrumb_page>
                   Data Fetching
@@ -187,7 +187,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
       <.sidebar_header>
         <.sidebar_menu>
           <.sidebar_menu_item>
-            <.sidebar_menu_button size="lg" as="a" href="#">
+            <.sidebar_menu_button size="lg" as_tag="a" href="#">
               <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Lucideicons.gallery_vertical_end class="size-4" />
               </div>
@@ -213,7 +213,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
               class="group/collapsible"
             >
               <.sidebar_menu_item>
-                <.collapsible_trigger as={&sidebar_menu_button/1}>
+                <.collapsible_trigger as_tag={&sidebar_menu_button/1}>
                   <%= group.title %>
                   <.plus class="ml-auto group-data-[state=open]/collapsible:hidden" />
                   <.minus class="ml-auto group-data-[state=closed]/collapsible:hidden" />
@@ -221,7 +221,11 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
                 <.collapsible_content>
                   <.sidebar_menu_sub>
                     <.sidebar_menu_sub_item :for={item <- group.items}>
-                      <.sidebar_menu_sub_button as="a" is_active={item[:is_active]} href={item.url}>
+                      <.sidebar_menu_sub_button
+                        as_tag="a"
+                        is_active={item[:is_active]}
+                        href={item.url}
+                      >
                         <%= item.title %>
                       </.sidebar_menu_sub_button>
                     </.sidebar_menu_sub_item>

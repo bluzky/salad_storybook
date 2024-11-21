@@ -48,11 +48,7 @@ defmodule Storybook.Examples.ReactiveChart do
   def render(assigns) do
     ~H"""
     <div class="container flex flex-col gap-y-4">
-      <.chart
-        id="reactive-chart"
-        chart_config={@chart_config}
-        chart_data={@chart_data}
-      />
+      <.chart id="reactive-chart" chart_config={@chart_config} chart_data={@chart_data} />
       <.button phx-click="update-chart">Update Chart</.button>
     </div>
     """

@@ -7,8 +7,11 @@ defmodule Storybook.SaladUIComponents.Collapsible do
   def function, do: &Collapsible.collapsible/1
 
   def imports,
-    do: [{SaladUI.Collapsible, [collapsible_trigger: 1, collapsible_content: 1]}, {SaladUI.Button, [button: 1]},      {SaladStorybookWeb.CoreComponents, [icon: 1]}
-]
+    do: [
+      {SaladUI.Collapsible, [collapsible_trigger: 1, collapsible_content: 1]},
+      {SaladUI.Button, [button: 1]},
+      {SaladStorybookWeb.CoreComponents, [icon: 1]}
+    ]
 
   def variations do
     [

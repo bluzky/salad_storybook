@@ -4,135 +4,135 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
   use SaladUI
 
   @data %{
-     versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
-     nav_main: [
-       %{
-         title: "Getting Started",
-         url: "#",
-         items: [
-           %{
-             title: "Installation",
-             url: "#"
-           },
-           %{
-             title: "Project Structure",
-             url: "#"
-           }
-         ]
-       },
-       %{
-         title: "Building Your Application",
-         url: "#",
-         items: [
-           %{
-             title: "Routing",
-             url: "#"
-           },
-           %{
-             title: "Data Fetching",
-             url: "#",
-             is_active: true
-           },
-           %{
-             title: "Rendering",
-             url: "#"
-           },
-           %{
-             title: "Caching",
-             url: "#"
-           },
-           %{
-             title: "Styling",
-             url: "#"
-           },
-           %{
-             title: "Optimizing",
-             url: "#"
-           },
-           %{
-             title: "Configuring",
-             url: "#"
-           },
-           %{
-             title: "Testing",
-             url: "#"
-           },
-           %{
-             title: "Authentication",
-             url: "#"
-           },
-           %{
-             title: "Deploying",
-             url: "#"
-           },
-           %{
-             title: "Upgrading",
-             url: "#"
-           },
-           %{
-             title: "Examples",
-             url: "#"
-           }
-         ]
-       },
-       %{
-         title: "API Reference",
-         url: "#",
-         items: [
-           %{
-             title: "Components",
-             url: "#"
-           },
-           %{
-             title: "File Conventions",
-             url: "#"
-           },
-           %{
-             title: "Functions",
-             url: "#"
-           },
-           %{
-             title: "next.config.js Options",
-             url: "#"
-           },
-           %{
-             title: "CLI",
-             url: "#"
-           },
-           %{
-             title: "Edge Runtime",
-             url: "#"
-           }
-         ]
-       },
-       %{
-         title: "Architecture",
-         url: "#",
-         items: [
-           %{
-             title: "Accessibility",
-             url: "#"
-           },
-           %{
-             title: "Fast Refresh",
-             url: "#"
-           },
-           %{
-             title: "Next.js Compiler",
-             url: "#"
-           },
-           %{
-             title: "Supported Browsers",
-             url: "#"
-           },
-           %{
-             title: "Turbopack",
-             url: "#"
-           }
-         ]
-       }
-     ]
-   }
+    versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
+    nav_main: [
+      %{
+        title: "Getting Started",
+        url: "#",
+        items: [
+          %{
+            title: "Installation",
+            url: "#"
+          },
+          %{
+            title: "Project Structure",
+            url: "#"
+          }
+        ]
+      },
+      %{
+        title: "Building Your Application",
+        url: "#",
+        items: [
+          %{
+            title: "Routing",
+            url: "#"
+          },
+          %{
+            title: "Data Fetching",
+            url: "#",
+            is_active: true
+          },
+          %{
+            title: "Rendering",
+            url: "#"
+          },
+          %{
+            title: "Caching",
+            url: "#"
+          },
+          %{
+            title: "Styling",
+            url: "#"
+          },
+          %{
+            title: "Optimizing",
+            url: "#"
+          },
+          %{
+            title: "Configuring",
+            url: "#"
+          },
+          %{
+            title: "Testing",
+            url: "#"
+          },
+          %{
+            title: "Authentication",
+            url: "#"
+          },
+          %{
+            title: "Deploying",
+            url: "#"
+          },
+          %{
+            title: "Upgrading",
+            url: "#"
+          },
+          %{
+            title: "Examples",
+            url: "#"
+          }
+        ]
+      },
+      %{
+        title: "API Reference",
+        url: "#",
+        items: [
+          %{
+            title: "Components",
+            url: "#"
+          },
+          %{
+            title: "File Conventions",
+            url: "#"
+          },
+          %{
+            title: "Functions",
+            url: "#"
+          },
+          %{
+            title: "next.config.js Options",
+            url: "#"
+          },
+          %{
+            title: "CLI",
+            url: "#"
+          },
+          %{
+            title: "Edge Runtime",
+            url: "#"
+          }
+        ]
+      },
+      %{
+        title: "Architecture",
+        url: "#",
+        items: [
+          %{
+            title: "Accessibility",
+            url: "#"
+          },
+          %{
+            title: "Fast Refresh",
+            url: "#"
+          },
+          %{
+            title: "Next.js Compiler",
+            url: "#"
+          },
+          %{
+            title: "Supported Browsers",
+            url: "#"
+          },
+          %{
+            title: "Turbopack",
+            url: "#"
+          }
+        ]
+      }
+    ]
+  }
 
   @impl true
   def mount(_params, _session, socket) do
@@ -143,8 +143,7 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
   def render(assigns) do
     ~H"""
     <.sidebar_provider>
-      <.sidebar_main data={@data}>
-      </.sidebar_main>
+      <.sidebar_main data={@data}></.sidebar_main>
       <.sidebar_inset>
         <header class="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <.sidebar_trigger target="main-sidebar" class="-ml-1">
@@ -181,15 +180,14 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
   end
 
   def sidebar_main(assigns) do
-
     ~H"""
     <.sidebar id="main-sidebar">
       <.sidebar_header>
         <.sidebar_menu>
           <.sidebar_menu_item>
-            <.sidebar_menu_button size="lg" as="a" href="#">
+            <.sidebar_menu_button size="lg" as_tag="a" href="#">
               <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <Lucideicons.gallery_vertical_end class="size-4"/>
+                <Lucideicons.gallery_vertical_end class="size-4" />
               </div>
               <div class="flex flex-col gap-0.5 leading-none">
                 <span class="font-semibold">
@@ -212,9 +210,9 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
                   <%= group.title %>
                 </a>
               </.sidebar_menu_button>
-              <.sidebar_menu_sub >
+              <.sidebar_menu_sub>
                 <.sidebar_menu_sub_item :for={item <- group.items}>
-                  <.sidebar_menu_sub_button as="a" is_active={item[:is_active]} href={item.url}>
+                  <.sidebar_menu_sub_button as_tag="a" is_active={item[:is_active]} href={item.url}>
                     <%= item.title %>
                   </.sidebar_menu_sub_button>
                 </.sidebar_menu_sub_item>
@@ -223,7 +221,7 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
           </.sidebar_menu>
         </.sidebar_group>
       </.sidebar_content>
-      <.sidebar_rail/>
+      <.sidebar_rail />
     </.sidebar>
     """
   end
