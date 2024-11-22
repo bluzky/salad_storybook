@@ -34,7 +34,7 @@ defmodule Storybook.SaladUIComponents.Popover do
         id: :popover,
         attributes: %{
           class: "w-80",
-          id: "content-id",
+          id: "popover-single-popover",
           side: "top"
         },
         slots: [

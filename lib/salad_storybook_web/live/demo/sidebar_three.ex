@@ -185,7 +185,7 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
       <.sidebar_header>
         <.sidebar_menu>
           <.sidebar_menu_item>
-            <.sidebar_menu_button size="lg" as_tag="a" href="#">
+            <.as_child tag={&sidebar_menu_button/1} size="lg" child="a" href="#">
               <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Lucideicons.gallery_vertical_end class="size-4" />
               </div>
@@ -197,7 +197,7 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
                   v1.0.0
                 </span>
               </div>
-            </.sidebar_menu_button>
+            </.as_child>
           </.sidebar_menu_item>
         </.sidebar_menu>
       </.sidebar_header>
@@ -212,9 +212,9 @@ defmodule SaladStorybookWeb.Demo.SidebarThree do
               </.sidebar_menu_button>
               <.sidebar_menu_sub>
                 <.sidebar_menu_sub_item :for={item <- group.items}>
-                  <.sidebar_menu_sub_button as_tag="a" is_active={item[:is_active]} href={item.url}>
+                  <.as_child tag={&sidebar_menu_sub_button/1} child="a" is_active={item[:is_active]} href={item.url}>
                     <%= item.title %>
-                  </.sidebar_menu_sub_button>
+                  </.as_child>
                 </.sidebar_menu_sub_item>
               </.sidebar_menu_sub>
             </.sidebar_menu_item>

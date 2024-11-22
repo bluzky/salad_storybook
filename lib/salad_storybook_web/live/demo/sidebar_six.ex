@@ -204,8 +204,8 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
     <.sidebar_menu>
       <.sidebar_menu_item>
         <.dropdown_menu class="block">
-          <.dropdown_menu_trigger
-            as_tag={&sidebar_menu_button/1}
+          <.as_child tag={&dropdown_menu_trigger/1}
+            child={&sidebar_menu_button/1}
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
@@ -221,7 +221,7 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
               </span>
             </div>
             <.chevrons_up_down class="ml-auto" />
-          </.dropdown_menu_trigger>
+          </.as_child>
           <.dropdown_menu_content
             class="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
             align="start"
@@ -274,22 +274,22 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
           class="group/collapsible block"
         >
           <.sidebar_menu_item>
-            <.collapsible_trigger as_tag={&sidebar_menu_button/1} tooltip={item.title}>
+            <.as_child tag={&collapsible_trigger/1} child={&sidebar_menu_button/1} tooltip={item.title}>
               <.dynamic :if={not is_nil(item.icon)} tag={item.icon} />
 
               <span>
                 <%= item.title %>
               </span>
               <.chevron_right class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-            </.collapsible_trigger>
+            </.as_child>
             <.collapsible_content>
               <.sidebar_menu_sub>
                 <.sidebar_menu_sub_item :for={sub_item <- item.items}>
-                  <.sidebar_menu_sub_button as_tag="a" href={sub_item.url}>
+                  <.as_child tag={&sidebar_menu_sub_button/1} child="a" href={sub_item.url}>
                     <span>
                       <%= sub_item.title %>
                     </span>
-                  </.sidebar_menu_sub_button>
+                  </.as_child>
                 </.sidebar_menu_sub_item>
               </.sidebar_menu_sub>
             </.collapsible_content>
@@ -310,12 +310,12 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
         <.sidebar_menu_item :for={item <- @projects}>
           <.dropdown_menu style="-ml-8 block">
             <.dropdown_menu_trigger show_on_hover>
-              <.sidebar_menu_button as_tag="a" href={item.url}>
+              <.as_child tag={&sidebar_menu_button/1} child="a" href={item.url}>
                 <.dynamic tag={item.icon} />
                 <span>
                   <%= item.name %>
                 </span>
-              </.sidebar_menu_button>
+              </.as_child>
               <.sidebar_menu_action>
                 <.ellipsis class="h-4 w-4" />
                 <span class="sr-only">
@@ -366,8 +366,8 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
     <.sidebar_menu>
       <.sidebar_menu_item>
         <.dropdown_menu class="block">
-          <.dropdown_menu_trigger
-            as_tag={&sidebar_menu_button/1}
+          <.as_child tag={&dropdown_menu_trigger/1}
+            child={&sidebar_menu_button/1}
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
@@ -386,7 +386,7 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
               </span>
             </div>
             <.chevrons_up_down class="ml-auto size-4" />
-          </.dropdown_menu_trigger>
+          </.as_child>
           <.dropdown_menu_content
             class="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
             side="right"

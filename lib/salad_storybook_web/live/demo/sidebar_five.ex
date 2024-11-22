@@ -187,7 +187,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
       <.sidebar_header>
         <.sidebar_menu>
           <.sidebar_menu_item>
-            <.sidebar_menu_button size="lg" as_tag="a" href="#">
+            <.as_child tag={&sidebar_menu_button/1} size="lg" child="a" href="#">
               <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Lucideicons.gallery_vertical_end class="size-4" />
               </div>
@@ -199,7 +199,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
                   v1.0.0
                 </span>
               </div>
-            </.sidebar_menu_button>
+            </.as_child>
           </.sidebar_menu_item>
         </.sidebar_menu>
       </.sidebar_header>
@@ -213,21 +213,21 @@ defmodule SaladStorybookWeb.Demo.SidebarFive do
               class="group/collapsible"
             >
               <.sidebar_menu_item>
-                <.collapsible_trigger as_tag={&sidebar_menu_button/1}>
+                <.as_child tag={&collapsible_trigger/1} child={&sidebar_menu_button/1}>
                   <%= group.title %>
                   <.plus class="ml-auto group-data-[state=open]/collapsible:hidden" />
                   <.minus class="ml-auto group-data-[state=closed]/collapsible:hidden" />
-                </.collapsible_trigger>
+                </.as_child>
                 <.collapsible_content>
                   <.sidebar_menu_sub>
                     <.sidebar_menu_sub_item :for={item <- group.items}>
-                      <.sidebar_menu_sub_button
-                        as_tag="a"
+                      <.as_child tag={&sidebar_menu_sub_button/1}
+                        child="a"
                         is_active={item[:is_active]}
                         href={item.url}
                       >
                         <%= item.title %>
-                      </.sidebar_menu_sub_button>
+                      </.as_child>
                     </.sidebar_menu_sub_item>
                   </.sidebar_menu_sub>
                 </.collapsible_content>

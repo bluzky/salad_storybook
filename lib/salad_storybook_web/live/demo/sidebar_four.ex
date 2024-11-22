@@ -149,7 +149,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFour do
           <.sidebar_trigger target="main-sidebar" class="-ml-1">
             <Lucideicons.panel_left class="w-4 h-4" />
           </.sidebar_trigger>
-          <.separator orientation="vertical" class="mr-2 h-4"></.separator>
+          <.separator orientation="vertical" class="mr-2 h-4"/>
           <.breadcrumb>
             <.breadcrumb_list>
               <.breadcrumb_item class="hidden md:block">
@@ -157,7 +157,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFour do
                   Building Your Application
                 </.breadcrumb_link>
               </.breadcrumb_item>
-              <.breadcrumb_separator class="hidden md:block"></.breadcrumb_separator>
+              <.breadcrumb_separator class="hidden md:block"/>
               <.breadcrumb_item>
                 <.breadcrumb_page>
                   Data Fetching
@@ -185,7 +185,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFour do
       <.sidebar_header>
         <.sidebar_menu>
           <.sidebar_menu_item>
-            <.sidebar_menu_button size="lg" as_tag="a" href="#">
+            <.as_child tag={&sidebar_menu_button/1} size="lg" child="a" href="#">
               <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Lucideicons.gallery_vertical_end class="size-4" />
               </div>
@@ -197,7 +197,7 @@ defmodule SaladStorybookWeb.Demo.SidebarFour do
                   v1.0.0
                 </span>
               </div>
-            </.sidebar_menu_button>
+            </.as_child>
           </.sidebar_menu_item>
         </.sidebar_menu>
       </.sidebar_header>
@@ -212,9 +212,9 @@ defmodule SaladStorybookWeb.Demo.SidebarFour do
               </.sidebar_menu_button>
               <.sidebar_menu_sub>
                 <.sidebar_menu_sub_item :for={item <- group.items}>
-                  <.sidebar_menu_sub_button as_tag="a" is_active={item[:is_active]} href={item.url}>
+                  <.as_child tag={&sidebar_menu_sub_button/1} child="a" is_active={item[:is_active]} href={item.url}>
                     <%= item.title %>
-                  </.sidebar_menu_sub_button>
+                  </.as_child>
                 </.sidebar_menu_sub_item>
               </.sidebar_menu_sub>
             </.sidebar_menu_item>
