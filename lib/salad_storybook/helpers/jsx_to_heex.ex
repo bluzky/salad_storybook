@@ -66,7 +66,9 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
                      SaladUI.Accordion,
                      SaladUI.Popover,
                      SaladUI.Collapsible,
-                     SaladUI.AlertDialog
+                     SaladUI.AlertDialog,
+                     SaladUI.Sidebar,
+                     Lucideicons
                    ]
                    |> Enum.map(& &1.__info__(:functions))
                    |> Enum.concat()
@@ -101,7 +103,6 @@ defmodule SaladStorybook.Helpers.JsxToHeex do
       "classname" -> {"class", value}
       "htmlfor" -> {"for", value}
       "defaultvalue" -> {"default-value", value}
-      "aschild" -> nil
       "x-chunk" -> nil
       _ -> {key, value}
     end

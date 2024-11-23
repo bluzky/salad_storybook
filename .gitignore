@@ -38,3 +38,5 @@ npm-debug.log
 
 .ctags.d/
 .tags
+.aider*
+.env

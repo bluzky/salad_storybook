@@ -585,9 +585,9 @@ defmodule SaladStorybookWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(NewStoryWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SaladStorybookWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(NewStoryWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SaladStorybookWeb.Gettext, "errors", msg, opts)
     end
   end
 

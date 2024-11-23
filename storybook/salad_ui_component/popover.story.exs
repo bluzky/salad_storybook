@@ -12,7 +12,7 @@ defmodule Storybook.SaladUIComponents.Popover do
       {SaladUI.Button, [button: 1]},
       {SaladUI.Avatar, [avatar: 1, avatar_image: 1, avatar_fallback: 1]},
       {SaladUI.Input, [input: 1]},
-      {SaladUI.Label, [label: 1]},
+      {SaladUI.Label, [label: 1]}
     ]
 
   def template do
@@ -34,7 +34,7 @@ defmodule Storybook.SaladUIComponents.Popover do
         id: :popover,
         attributes: %{
           class: "w-80",
-          id: "content-id",
+          id: "popover-single-popover",
           side: "top"
         },
         slots: [

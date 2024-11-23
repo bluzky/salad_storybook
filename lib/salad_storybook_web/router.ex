@@ -26,6 +26,12 @@ defmodule SaladStorybookWeb.Router do
     live "/dashboard-one", Demo.DashboardOne
     live "/dashboard-two", Demo.DashboardTwo
     live "/dashboard-three", Demo.DashboardThree
+    live "/sidebar-one", Demo.SidebarOne
+    live "/sidebar-two", Demo.SidebarTwo
+    live "/sidebar-three", Demo.SidebarThree
+    live "/sidebar-four", Demo.SidebarFour
+    live "/sidebar-five", Demo.SidebarFive
+    live "/sidebar-six", Demo.SidebarSix
   end
 
   scope "/", SaladStorybookWeb do
@@ -46,13 +52,13 @@ defmodule SaladStorybookWeb.Router do
     # If your application does not have an admins-only section yet,
     # you can use Plug.BasicAuth to set up some basic authentication
     # as long as you are also using SSL (which you should anyway).
-  #   import Phoenix.LiveDashboard.Router
+    #   import Phoenix.LiveDashboard.Router
 
-  #   scope "/dev" do
-  #     pipe_through :browser
+    #   scope "/dev" do
+    #     pipe_through :browser
 
-  #     live_dashboard "/dashboard", metrics: SaladStorybookWeb.Telemetry
-  #     forward "/mailbox", Plug.Swoosh.MailboxPreview
-  #   end
+    #     live_dashboard "/dashboard", metrics: SaladStorybookWeb.Telemetry
+    #     forward "/mailbox", Plug.Swoosh.MailboxPreview
+    #   end
   end
 end
