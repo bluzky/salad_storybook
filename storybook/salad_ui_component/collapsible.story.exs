@@ -18,7 +18,6 @@ defmodule Storybook.SaladUIComponents.Collapsible do
       %Variation{
         id: :default,
         attributes: %{open: false, class: "w-[350px] space-y-2"},
-        let: :builder,
         slots: [
           """
           <div class="flex items-center justify-between space-x-4 px-4">
