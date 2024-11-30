@@ -2,12 +2,13 @@
 // require connect parameters, uncomment the following lines and declare them as
 // such:
 //
-import * as Hooks from "./hooks";
+import { ChartHook } from "./hooks";
+import ZagHook from "./zag/ZagHook";
 // import * as Params from "./params";
 // import * as Uploaders from "./uploaders";
 
 (function () {
-  window.storybook = { Hooks };
+  window.storybook = { Hooks: { ChartHook, ZagHook } };
 })();
 
 // If your components require alpinejs, you'll need to start
