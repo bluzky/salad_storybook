@@ -76,7 +76,7 @@ defmodule SaladStorybook.MixProject do
 
       # load local salad_ui on dev from local path
       (Mix.env() == :prod &&
-         {:salad_ui, github: "bluzky/salad_ui", tag: "v0.14.0-rc1"}) ||
+         {:salad_ui, github: "bluzky/salad_ui", tag: "v0.14.1"}) ||
 
         {:salad_ui, path: "../salad_ui"}
     ]

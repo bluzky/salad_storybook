@@ -32,6 +32,7 @@ defmodule SaladStorybookWeb.Router do
     live "/sidebar-four", Demo.SidebarFour
     live "/sidebar-five", Demo.SidebarFive
     live "/sidebar-six", Demo.SidebarSix
+    live "/sidebar-seven", Demo.SidebarSeven
   end
 
   scope "/", SaladStorybookWeb do

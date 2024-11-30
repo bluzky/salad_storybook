@@ -11,12 +11,12 @@ defmodule Storybook.Examples.Sidebar do
   def render(assigns) do
     ~H"""
     <div class="space-y-12">
-    <.section url="/demo/sidebar-one" source_ulr="" title="A simple sidebar with navigation grouped by section." />
-    <.section url="/demo/sidebar-two" source_ulr="" title="A sidebar with collapsible sections." />
-    <.section url="/demo/sidebar-three" source_ulr="" title="A sidebar with submenus." />
-    <.section url="/demo/sidebar-four" source_ulr="" title="A floating sidebar with submenus." />
-    <.section url="/demo/sidebar-five" source_ulr="" title="A sidebar with collapsible submenus." />
-    <.section url="/demo/sidebar-six" source_ulr="" title="A sidebar that collapses to icons." />
+    <.section url="/demo/sidebar-one" source_url="https://github.com/bluzky/salad_storybook/blob/main/lib/salad_storybook_web/live/demo/sidebar_one.ex" title="A simple sidebar with navigation grouped by section." />
+    <.section url="/demo/sidebar-two" source_url="https://github.com/bluzky/salad_storybook/blob/main/lib/salad_storybook_web/live/demo/sidebar_two.ex" title="A sidebar with collapsible sections." />
+    <.section url="/demo/sidebar-three" source_url="https://github.com/bluzky/salad_storybook/blob/main/lib/salad_storybook_web/live/demo/sidebar_three.ex" title="A sidebar with submenus." />
+    <.section url="/demo/sidebar-four" source_url="https://github.com/bluzky/salad_storybook/blob/main/lib/salad_storybook_web/live/demo/sidebar_four.ex" title="A floating sidebar with submenus." />
+    <.section url="/demo/sidebar-five" source_url="https://github.com/bluzky/salad_storybook/blob/main/lib/salad_storybook_web/live/demo/sidebar_five.ex" title="A sidebar with collapsible submenus." />
+    <.section url="/demo/sidebar-six" source_url="https://github.com/bluzky/salad_storybook/blob/main/lib/salad_storybook_web/live/demo/sidebar_six.ex" title="A sidebar that collapses to icons." />
 </div>
     """
   end
