@@ -11,6 +11,7 @@ export class Component {
   service; // state machine service
   api; // api object
   cleanupFunctions = new Map(); // cleanup functions for event listeners
+  prevAttrsMap = new WeakMap();
 
   constructor(el, context) {
     this.el = el;
@@ -23,7 +24,9 @@ export class Component {
     this.render();
 
     // Re-render on state updates
-    this.service.subscribe(() => {
+    this.service.subscribe((e) => {
+      console.log("State updated", e.event);
+      console.log("State updated", e);
       this.api = this.initApi(this.componentModule);
       this.render();
     });
@@ -60,18 +63,12 @@ export class Component {
   }
 
   initService(component, context) {
-    console.log("initService", component, context);
-
     // TODO experiment
     if (context.collection) {
       context.collection = component.collection(context.collection);
     }
     return component.machine({
       ...context,
-      onHighlightChange(details) {
-        // details => { highlightedValue: string | null, highlightedItem: CollectionItem | null }
-        console.log(details);
-      },
     });
   }
 
@@ -141,50 +138,32 @@ export class Component {
   // spread props to the element
   // if the prop is an event, update the event listener if it's new or changed
   // if the prop is an attribute, update the attribute value if it's new or changed
-  spreadProps(el, attrs, isRoot = false) {
-    const prevAttrsMap = new WeakMap();
-    const oldAttrs = prevAttrsMap.get(el) || {};
-    const eventHandlers = new Map();
+  spreadProps(node, attrs, isRoot = false) {
+    const oldAttrs = this.prevAttrsMap.get(node) || {};
     const attrKeys = Object.keys(attrs);
 
-    // for given event name and callback
-    // if the event is new or changed, add the event listener
-    const addEvent = (event, callback) => {
-      const existingHandler = eventHandlers.get(event);
-      // same, do nothing
-      if (existingHandler && oldAttrs[`on${event}`] === callback) {
-        return;
-      }
-
-      // changed, remove the old event listener
-      if (existingHandler) {
-        el.removeEventListener(event.toLowerCase(), existingHandler);
-      }
-
-      // add the new event listener
-      const handler = (e) => callback(e);
-      eventHandlers.set(event, handler);
-      el.addEventListener(event.toLowerCase(), handler);
+    const addEvt = (eventName, listener) => {
+      node.addEventListener(eventName.toLowerCase(), listener);
     };
 
-    const removeEvent = (event) => {
-      const handler = eventHandlers.get(event);
-      if (handler) {
-        el.removeEventListener(event.toLowerCase(), handler);
-        eventHandlers.delete(event);
-      }
+    const remEvt = (eventName, listener) => {
+      node.removeEventListener(eventName.toLowerCase(), listener);
     };
 
-    // add event if it's new or changed
+    const onEvents = (attr) => attr.startsWith("on");
+    const others = (attr) => !attr.startsWith("on");
+
     const setup = (attr) => {
       const eventName = attr.substring(2);
       const newHandler = attrs[attr];
       const existingHandler = oldAttrs[attr];
 
       if (newHandler !== existingHandler) {
-        addEvent(eventName, newHandler);
+        addEvt(eventName, newHandler);
       }
     };
+
+    const teardown = (attr) => remEvt(attr.substring(2), attrs[attr]);
 
     // update attribute value if it's new or changed
     const apply = (attrName) => {
@@ -193,44 +172,45 @@ export class Component {
       if (attrName === "id" && isRoot) return;
 
       let value = attrs[attrName];
-      const oldValue = oldAttrs[attrName];
 
+      const oldValue = oldAttrs[attrName];
       if (value === oldValue) return;
 
-      if (typeof value === "boolean") value = value || undefined;
+      if (typeof value === "boolean") {
+        value = value || undefined;
+      }
 
-      if (value == null) {
-        el.removeAttribute(attrName.toLowerCase());
+      if (value != null) {
+        if (["value", "checked", "htmlFor"].includes(attrName)) {
+          node[attrName] = value;
+        } else {
+          node.setAttribute(attrName.toLowerCase(), value);
+        }
         return;
       }
 
-      if (["value", "checked", "htmlFor"].includes(attrName)) {
-        if (el[attrName] !== value) {
-          el[attrName] = value;
-        }
-      } else {
-        const currentAttr = el.getAttribute(attrName.toLowerCase());
-        if (currentAttr !== String(value)) {
-          el.setAttribute(attrName.toLowerCase(), value);
-        }
-      }
+      node.removeAttribute(attrName.toLowerCase());
     };
 
-    attrKeys.forEach((key) => {
-      if (key.startsWith("on")) setup(key);
-      else apply(key);
+    // reconcile old attributes
+    for (const key in oldAttrs) {
+      if (attrs[key] == null) {
+        node.removeAttribute(key.toLowerCase());
+      }
+    }
+
+    // clean old event listeners
+    const oldEvents = Object.keys(oldAttrs).filter(onEvents);
+    oldEvents.forEach((evt) => {
+      remEvt(evt.substring(2), oldAttrs[evt]);
     });
 
-    prevAttrsMap.set(el, attrs);
+    attrKeys.filter(onEvents).forEach(setup);
+    attrKeys.filter(others).forEach(apply);
+    this.prevAttrsMap.set(node, attrs);
 
-    return () => {
-      attrKeys
-        .filter((key) => key.startsWith("on"))
-        .forEach((key) => {
-          const eventName = key.substring(2).toLowerCase();
-          removeEvent(eventName);
-        });
-      prevAttrsMap.delete(el);
+    return function cleanup() {
+      attrKeys.filter(onEvents).forEach(teardown);
     };
   }
 }
