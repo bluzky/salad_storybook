@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@zag-js/collapsible": "^0.78.0",
+    "@zag-js/select": "^0.78.1",
     "chart.js": "^4.4.5"
   }
 }

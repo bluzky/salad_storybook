@@ -45,42 +45,6 @@ export class Component {
   }
 
   /*----------------- Private methods -----------------*/
-
-  extractContext() {
-    try {
-      const options = this.el.dataset.options
-        ? Object.fromEntries(
-            Object.entries(JSON.parse(this.el.dataset.options)).map(
-              ([key, value]) => [
-                camelize(key),
-                value === "bool"
-                  ? getBooleanOption(this.el, key)
-                  : getOption(this.el, key, value),
-              ],
-            ),
-          )
-        : {};
-
-      const listeners = this.el.dataset.listeners
-        ? JSON.parse(this.el.dataset.listeners)
-            .map((event) => ({
-              [`on${camelize(event, true)}Change`]: (details) =>
-                this.pushEvent(event, details),
-            }))
-            .reduce((acc, listener) => ({ ...acc, ...listener }), {})
-        : {};
-
-      return {
-        id: this.el.id || "",
-        ...options,
-        ...listeners,
-      };
-    } catch (error) {
-      console.error("Error parsing context:", error);
-      return {};
-    }
-  }
-
   initializeComponent() {
     // component name is set on the root element via data-component attribute
     const componentName = this.el.dataset.component;
@@ -96,7 +60,19 @@ export class Component {
   }
 
   initService(component, context) {
-    return component.machine(context);
+    console.log("initService", component, context);
+
+    // TODO experiment
+    if (context.collection) {
+      context.collection = component.collection(context.collection);
+    }
+    return component.machine({
+      ...context,
+      onHighlightChange(details) {
+        // details => { highlightedValue: string | null, highlightedItem: CollectionItem | null }
+        console.log(details);
+      },
+    });
   }
 
   initApi(component) {
@@ -111,6 +87,7 @@ export class Component {
     this.cleanup();
 
     for (const part of ["root", ...this.parts(this.el)]) {
+      if (part === "item") continue;
       this.renderPart(this.el, part, this.api);
     }
 
@@ -139,11 +116,14 @@ export class Component {
       return;
     }
 
-    const cleanup = this.spreadProps(item, this.api.getItemProps({ value }));
+    const cleanup = this.spreadProps(
+      item,
+      this.api.getItemProps({ item: { value } }),
+    );
     this.cleanupFunctions.set(item, cleanup);
 
     for (const part of this.parts(item)) {
-      this.renderPart(item, `item-${part}`, this.api, { value });
+      this.renderPart(item, `item-${part}`, this.api, { item: { value } });
     }
   }
 
