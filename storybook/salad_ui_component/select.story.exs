@@ -27,7 +27,8 @@ defmodule Storybook.SaladUIComponents.Select do
           name: "fruit",
           target: "my-select",
           placeholder: "Select a fruit",
-          items: [%{label: "Apple", value: "apple"}, %{label: "Banana", value: "banana"}, %{label: "Blueberry", value: "blueberry"}, %{label: "Grapes", value: "grapes", disabled: true}, %{label: "Pineapple", value: "pineapple"}]
+          items: [%{label: "Apple", value: "apple"}, %{label: "Banana", value: "banana"}, %{label: "Blueberry", value: "blueberry"}, %{label: "Grapes", value: "grapes", disabled: true}, %{label: "Pineapple", value: "pineapple"}],
+          on_value_change: "update_fruit"
         },
         template: """
         <form>
