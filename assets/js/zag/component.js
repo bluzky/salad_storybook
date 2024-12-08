@@ -25,8 +25,6 @@ export class Component {
 
     // Re-render on state updates
     this.service.subscribe((e) => {
-      console.log("State updated", e.event);
-      console.log("State updated", e);
       this.api = this.initApi(this.componentModule);
       this.render();
     });
