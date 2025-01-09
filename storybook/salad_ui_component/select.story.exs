@@ -28,7 +28,8 @@ defmodule Storybook.SaladUIComponents.Select do
           target: "my-select",
           placeholder: "Select a fruit",
           items: [%{label: "Apple", value: "apple"}, %{label: "Banana", value: "banana"}, %{label: "Blueberry", value: "blueberry"}, %{label: "Grapes", value: "grapes", disabled: true}, %{label: "Pineapple", value: "pineapple"}],
-          on_value_change: "update_fruit"
+          on_value_change: "update_fruit",
+          value: "banana"
         },
         template: """
         <form>
@@ -40,11 +41,11 @@ defmodule Storybook.SaladUIComponents.Select do
         slots: [
           """
             <.select_trigger builder={select} class="w-[180px]"/>
-            <.select_content class="w-full" builder={select}>
+            <.select_content class="w-full">
               <.select_group>
                 <.select_label>Fruits</.select_label>
-                <.select_item builder={select} value="apple" label="Apple"></.select_item>
-                <.select_item builder={select} value="banana" label="Banana"></.select_item>
+                <.select_item builder={select} value="apple"></.select_item>
+                <.select_item builder={select} value="banana"></.select_item>
                 <.select_item builder={select}  value="blueberry"></.select_item>
                 <.select_separator />
                 <.select_item builder={select} disabled value="grapes"></.select_item>

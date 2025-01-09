@@ -20,11 +20,13 @@ export class Component {
 
   // Initialize the component
   init() {
+    this.collectAdditionalContext();
     this.initializeComponent();
     this.render();
 
     // Re-render on state updates
     this.service.subscribe((e) => {
+      // console.log("State updated", e.event);
       this.api = this.initApi(this.componentModule);
       this.render();
     });
@@ -46,6 +48,24 @@ export class Component {
   }
 
   /*----------------- Private methods -----------------*/
+  // collect additional context from the DOM
+  // this help to reduce change when migrating to new version
+  // on the cons, it actually reduce the readability of the code
+  collectAdditionalContext() {
+    const additionalContextOpts = this.context.additional_context;
+    if (!additionalContextOpts) return;
+
+    additionalContextOpts.forEach((key) => {
+      const el = this.el.querySelector(`[data-ctx-${key}]`);
+      if (el) {
+        console.log("el", el.dataset);
+        const value = JSON.parse(el.dataset[camelize(`ctx-${key}`)]);
+        this.context[key] = value;
+      }
+    });
+    console.log("context", this.context);
+  }
+
   initializeComponent() {
     // component name is set on the root element via data-component attribute
     const componentName = this.el.dataset.component;
@@ -65,9 +85,7 @@ export class Component {
     if (context.collection) {
       context.collection = component.collection(context.collection);
     }
-    return component.machine({
-      ...context,
-    });
+    return component.machine(context);
   }
 
   initApi(component) {
@@ -81,7 +99,7 @@ export class Component {
   render() {
     this.cleanup();
 
-    for (const part of ["root", ...this.parts(this.el)]) {
+    for (const part of this.parts(this.el)) {
       if (part === "item") continue;
       this.renderPart(this.el, part, this.api);
     }
@@ -92,10 +110,11 @@ export class Component {
   }
 
   renderPart(root, name, api, opts = {}) {
-    const isRoot = name === "root";
+    const isRoot = name === root.dataset.part;
     const part = isRoot ? root : root.querySelector(`[data-part='${name}']`);
 
     const getterName = `get${camelize(name, true)}Props`;
+    // console.log(getterName, opts);
 
     if (part && api[getterName]) {
       const cleanup = this.spreadProps(part, api[getterName](opts), isRoot);
@@ -105,20 +124,16 @@ export class Component {
 
   // Render an item in a list item
   renderItem(item) {
-    const value = item.dataset.value;
-    if (!value) {
-      console.error("Missing `data-value` attribute on item.");
-      return;
+    let itemProps = {};
+    if (item.dataset.props) {
+      itemProps = JSON.parse(item.dataset.props);
     }
-
-    const cleanup = this.spreadProps(
-      item,
-      this.api.getItemProps({ item: { value } }),
-    );
+    // console.log("itemProps", this.api.getItemProps(itemProps));
+    const cleanup = this.spreadProps(item, this.api.getItemProps(itemProps));
     this.cleanupFunctions.set(item, cleanup);
 
     for (const part of this.parts(item)) {
-      this.renderPart(item, `item-${part}`, this.api, { item: { value } });
+      this.renderPart(item, part, this.api, itemProps);
     }
   }
 

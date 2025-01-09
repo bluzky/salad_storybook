@@ -46,7 +46,8 @@ defmodule SaladStorybookWeb.Demo.DashboardOne do
             <Lucideicons.package class="h-4 w-4 transition-all group-hover:scale-110" />
             <span class="sr-only">Acme Inc</span>
           </.link>
-          <.tooltip>
+          <.tooltip side="right">
+            <.tooltip_trigger>
             <.link
               href="#"
               class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
@@ -54,7 +55,8 @@ defmodule SaladStorybookWeb.Demo.DashboardOne do
               <Lucideicons.home class="h-5 w-5" />
               <span class="sr-only">Dashboard</span>
             </.link>
-            <.tooltip_content side="right">Dashboard</.tooltip_content>
+              </.tooltip_trigger>
+            <.tooltip_content>Dashboard</.tooltip_content>
           </.tooltip>
           <.tooltip>
             <.link

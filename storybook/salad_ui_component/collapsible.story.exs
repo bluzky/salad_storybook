@@ -24,7 +24,7 @@ defmodule Storybook.SaladUIComponents.Collapsible do
             <h4 class="text-sm font-semibold">
               @peduarte starred 3 repositories
             </h4>
-            <.collapsible_trigger phx-click="toggle">
+            <.collapsible_trigger>
               <.button variant="ghost" size="sm" class="w-9 p-0">
                 <.icon name="hero-chevron-up-down" class="h-4 w-4"></.icon>
                 <span class="sr-only">

@@ -5,8 +5,13 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "dependencies": {
+    "@zag-js/avatar": "^0.78.2",
     "@zag-js/collapsible": "^0.78.0",
+    "@zag-js/menu": "^0.79.0",
+    "@zag-js/radio-group": "0.79",
     "@zag-js/select": "^0.78.1",
+    "@zag-js/toggle-group": "^0.78.2",
+    "@zag-js/tooltip": "^0.78.3",
     "chart.js": "^4.4.5"
   }
 }
