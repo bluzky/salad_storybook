@@ -29,6 +29,7 @@
             erlang-ls
 
             # Tools
+            yarn
             # yamllint
             # yaml-language-server
             # shfmt
