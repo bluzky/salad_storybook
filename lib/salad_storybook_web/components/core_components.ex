@@ -562,13 +562,13 @@ defmodule SaladStorybookWeb.CoreComponents do
     )
   end
 
-  def show_modal(js \\ %JS{}, id) when is_binary(id) do
-    Dialog.show_modal(js, id)
-  end
+  # def show_modal(js \\ %JS{}, id) when is_binary(id) do
+  #   Dialog.show_modal(js, id)
+  # end
 
-  def hide_modal(js \\ %JS{}, id) do
-    Dialog.hide_modal(js, id)
-  end
+  # def hide_modal(js \\ %JS{}, id) do
+  #   Dialog.hide_modal(js, id)
+  # end
 
   @doc """
   Translates an error message using gettext.

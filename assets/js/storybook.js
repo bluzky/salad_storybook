@@ -2,12 +2,22 @@
 // require connect parameters, uncomment the following lines and declare them as
 // such:
 //
-import * as Hooks from "./hooks";
+import { ChartHook } from "./hooks";
+import SaladUI from "../../../salad_ui/assets/index";
+import "../../../salad_ui/assets/components/dialog";
+import "../../../salad_ui/assets/components/select";
+import "../../../salad_ui/assets/components/tabs";
+
 // import * as Params from "./params";
 // import * as Uploaders from "./uploaders";
 
 (function () {
-  window.storybook = { Hooks };
+  window.storybook = {
+    Hooks: {
+      ChartHook,
+      SaladUI: SaladUI.SaladUIHook,
+    },
+  };
 })();
 
 // If your components require alpinejs, you'll need to start

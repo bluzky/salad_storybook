@@ -1,6 +1,7 @@
 defmodule Storybook.SaladUIComponents.Dialog do
   @moduledoc false
   use PhoenixStorybook.Story, :component
+  import SaladUI.LiveView
 
   alias SaladUI.Button
   alias SaladUI.Dialog
@@ -14,19 +15,21 @@ defmodule Storybook.SaladUIComponents.Dialog do
       {Button, [button: 1]},
       {Input, [input: 1]},
       {Label, [label: 1]},
-      {Dialog, [dialog_header: 1, dialog_title: 1, dialog_description: 1, dialog_footer: 1, hide_modal: 1, show_modal: 1]}
+      {Dialog, [dialog_header: 1, dialog_title: 1, dialog_description: 1, dialog_footer: 1, dialog_content: 1, dialog_trigger: 1]}
     ]
 
   def variations do
     [
       %Variation{
         id: :dialog,
-        template: """
-        <.button phx-click={show_modal("my-modal")}>
+        slots: ["""
+
+        <.dialog_trigger>
+                <.button>
         Open modal
         </.button>
-
-        <.dialog id="my-modal" on_cancel={JS.push("cancel")} class="w-[700px]">
+        </.dialog_trigger>
+        <.dialog_content class="sm:max-w-[425px]">
             <.dialog_header>
               <.dialog_title>Edit profile</.dialog_title>
               <.dialog_description>
@@ -50,8 +53,8 @@ defmodule Storybook.SaladUIComponents.Dialog do
             <.dialog_footer>
               <.button type="submit">save changes</.button>
             </.dialog_footer>
-        </.dialog>
-        """,
+        </.dialog_content>
+        """],
         attributes: %{}
       }
     ]
