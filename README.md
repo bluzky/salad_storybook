@@ -28,40 +28,42 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## List of components
 
-- [x] Accordion
-- [x] Alert
-- [ ] Alert Dialog
-- [x] Avatar
-- [x] Badge
-- [x] Breadcrumb
-- [x] Button
-- [x] Card
-- [ ] Carousel
-- [x] Checkbox
-- [ ] Collapsible
-- [ ] Combobox
-- [ ] Command
-- [ ] Context Menu
-- [x] Dialog
-- [ ] Drawer
-- [x] Dropdown Menu
-- [x] Form
-- [x] Hover Card
-- [x] Input
-- [ ] Input OTP
-- [x] Label
-- [x] Pagination
-- [ ] Popover
-- [x] Progress
-- [x] Radio Group
-- [x] Scroll Area
-- [x] Select
-- [x] Separator
-- [x] Sheet
-- [x] Skeleton
-- [x] Slider
-- [x] Switch
-- [x] Table
-- [x] Tabs
-- [x] Textarea
-- [x] Tooltip
+| Component      | v0   | v1   |
+|----------------|------|------|
+| Accordion      | ✅    |      |
+| Alert          | ✅    | ✅     |
+| Alert Dialog   | ✅    |      |
+| Avatar         | ✅    | ✅     |
+| Badge          | ✅    | ✅     |
+| Breadcrumb     | ✅    | ✅     |
+| Button         | ✅    | ✅     |
+| Card           | ✅    | ✅     |
+| Carousel       | ❌    |      |
+| Checkbox       | ✅    |      |
+| Collapsible    | ✅    |      |
+| Combobox       | ❌    |      |
+| Command        | ❌    |      |
+| Context Menu   | ❌    |      |
+| Dialog         | ✅    | ✅     |
+| Drawer         | ❌    |      |
+| Dropdown Menu  | ✅    |      |
+| Form           | ✅    |      |
+| Hover Card     | ✅    | ✅      |
+| Input          | ✅    |      |
+| Input OTP      | ❌    |      |
+| Label          | ✅    |      |
+| Pagination     | ✅    |      |
+| Popover        | ✅    | ✅     |
+| Progress       | ✅    |      |
+| Radio Group    | ✅    |      |
+| Scroll Area    | ✅    |      |
+| Select         | ✅    | ✅     |
+| Separator      | ✅    |      |
+| Sheet          | ✅    |      |
+| Skeleton       | ✅    |      |
+| Slider         | ✅    |      |
+| Switch         | ✅    |      |
+| Table          | ✅    |      |
+| Tabs           | ✅    | ✅     |
+| Textarea       | ✅    |      |
+| Tooltip        | ✅    |      |
