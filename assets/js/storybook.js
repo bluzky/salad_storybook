@@ -7,6 +7,9 @@ import SaladUI from "../../../salad_ui/assets/index";
 import "../../../salad_ui/assets/components/dialog";
 import "../../../salad_ui/assets/components/select";
 import "../../../salad_ui/assets/components/tabs";
+import "../../../salad_ui/assets/components/radio_group";
+import "../../../salad_ui/assets/components/popover";
+import "../../../salad_ui/assets/components/hover-card";
 
 // import * as Params from "./params";
 // import * as Uploaders from "./uploaders";

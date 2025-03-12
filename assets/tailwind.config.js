@@ -21,7 +21,7 @@ module.exports = {
       colors: require("./tailwind.colors.json"),
     },
   },
-  important: ".salad-storybook-web",
+  important: ".psb",
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
