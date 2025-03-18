@@ -17,6 +17,17 @@ defmodule Storybook.SaladUIComponents.Skeleton do
           </div>
         </div>
         """
+      },
+      %Variation{
+        id: :skeleton_card,
+        template: """
+        <div class="space-y-2 w-full">
+          <.skeleton class="h-32 w-full rounded-lg" />
+          <.skeleton class="h-4 w-2/3" />
+          <.skeleton class="h-4 w-full" />
+          <.skeleton class="h-4 w-full" />
+        </div>
+        """
       }
     ]
   end
