@@ -13,6 +13,7 @@ import "../../../salad_ui/assets/components/hover-card";
 import "../../../salad_ui/assets/components/collapsible";
 import "../../../salad_ui/assets/components/tooltip";
 import "../../../salad_ui/assets/components/accordion";
+import "../../../salad_ui/assets/components/slider";
 
 // import * as Params from "./params";
 // import * as Uploaders from "./uploaders";

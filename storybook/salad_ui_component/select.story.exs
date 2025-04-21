@@ -37,7 +37,8 @@ defmodule Storybook.SaladUIComponents.Select do
         description: "A select component with default styling and behavior",
         attributes: %{
           id: "fruit-select",
-          name: "fruit"
+          name: "fruit",
+          "on-value-changed": "value_changed"
         },
         let: :select,
         slots: [
