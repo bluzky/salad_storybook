@@ -1,5 +1,8 @@
 // In production, replace with only the chart types you are using
 import Chart from "chart.js/auto";
+import SaladUIFramework from "../../../salad_ui/assets/index.js";
+import "../../../salad_ui/assets/components/command.js";
+import "../../../salad_ui/assets/components/dialog.js";
 
 // utility function to fetch CSS variables
 function cssvar(name) {
@@ -82,15 +85,15 @@ export const ChartHook = {
             const colorName = dataset[key].split("--")[1].split(")")[0].trim();
             dataset[key] = dataset[key].replace(
               `var(--${colorName})`,
-              cssvar(`--${colorName}`)
+              cssvar(`--${colorName}`),
             );
           }
         });
 
         return Object.fromEntries(
           Object.entries(dataset).filter(
-            ([key]) => !this.RESERVED_DATASET_KEYS.includes(key)
-          )
+            ([key]) => !this.RESERVED_DATASET_KEYS.includes(key),
+          ),
         );
       });
   },
@@ -106,3 +109,5 @@ export const ChartHook = {
     }
   },
 };
+
+export const SaladUI = SaladUIFramework.SaladUIHook;
