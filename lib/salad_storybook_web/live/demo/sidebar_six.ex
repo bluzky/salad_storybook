@@ -204,7 +204,8 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
     <.sidebar_menu>
       <.sidebar_menu_item>
         <.dropdown_menu class="block">
-          <.as_child tag={&dropdown_menu_trigger/1}
+          <.as_child
+            tag={&dropdown_menu_trigger/1}
             child={&sidebar_menu_button/1}
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
@@ -214,10 +215,10 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
             </div>
             <div class="grid flex-1 text-left text-sm leading-tight">
               <span class="truncate font-semibold">
-                <%= @active_team.name %>
+                {@active_team.name}
               </span>
               <span class="truncate text-xs">
-                <%= @active_team.plan %>
+                {@active_team.plan}
               </span>
             </div>
             <.chevrons_up_down class="ml-auto" />
@@ -236,9 +237,9 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
                 <div class="flex size-6 items-center justify-center rounded-sm border">
                   <.dynamic tag={team.logo} class="size-4 shrink-0" />
                 </div>
-                <%= team.name %>
+                {team.name}
                 <.dropdown_menu_shortcut>
-                  ⌘<%= index + 1 %>
+                  ⌘{index + 1}
                 </.dropdown_menu_shortcut>
               </.menu_item>
 
@@ -274,11 +275,15 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
           class="group/collapsible block"
         >
           <.sidebar_menu_item>
-            <.as_child tag={&collapsible_trigger/1} child={&sidebar_menu_button/1} tooltip={item.title}>
+            <.as_child
+              tag={&collapsible_trigger/1}
+              child={&sidebar_menu_button/1}
+              tooltip={item.title}
+            >
               <.dynamic :if={not is_nil(item.icon)} tag={item.icon} />
 
               <span>
-                <%= item.title %>
+                {item.title}
               </span>
               <.chevron_right class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
             </.as_child>
@@ -287,7 +292,7 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
                 <.sidebar_menu_sub_item :for={sub_item <- item.items}>
                   <.as_child tag={&sidebar_menu_sub_button/1} child="a" href={sub_item.url}>
                     <span>
-                      <%= sub_item.title %>
+                      {sub_item.title}
                     </span>
                   </.as_child>
                 </.sidebar_menu_sub_item>
@@ -313,7 +318,7 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
               <.as_child tag={&sidebar_menu_button/1} child="a" href={item.url}>
                 <.dynamic tag={item.icon} />
                 <span>
-                  <%= item.name %>
+                  {item.name}
                 </span>
               </.as_child>
               <.sidebar_menu_action>
@@ -366,7 +371,8 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
     <.sidebar_menu>
       <.sidebar_menu_item>
         <.dropdown_menu class="block">
-          <.as_child tag={&dropdown_menu_trigger/1}
+          <.as_child
+            tag={&dropdown_menu_trigger/1}
             child={&sidebar_menu_button/1}
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
@@ -379,10 +385,10 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
             </.avatar>
             <div class="grid flex-1 text-left text-sm leading-tight">
               <span class="truncate font-semibold">
-                <%= @user.name %>
+                {@user.name}
               </span>
               <span class="truncate text-xs">
-                <%= @user.email %>
+                {@user.email}
               </span>
             </div>
             <.chevrons_up_down class="ml-auto size-4" />
@@ -404,10 +410,10 @@ defmodule SaladStorybookWeb.Demo.SidebarSix do
                   </.avatar>
                   <div class="grid flex-1 text-left text-sm leading-tight">
                     <span class="truncate font-semibold">
-                      <%= @user.name %>
+                      {@user.name}
                     </span>
                     <span class="truncate text-xs">
-                      <%= @user.email %>
+                      {@user.email}
                     </span>
                   </div>
                 </div>

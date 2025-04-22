@@ -294,19 +294,19 @@ defmodule SaladStorybookWeb.Demo.DashboardOne do
                           <.skeleton class="h-16 w-16" />
                         </.table_cell>
                         <.table_cell class="font-medium">
-                          <%= product.name %>
+                          {product.name}
                         </.table_cell>
                         <.table_cell>
-                          <.badge variant="outline"><%= product.status %></.badge>
+                          <.badge variant="outline">{product.status}</.badge>
                         </.table_cell>
                         <.table_cell class="hidden md:table-cell">
-                          $<%= product.price %>
+                          ${product.price}
                         </.table_cell>
                         <.table_cell class="hidden md:table-cell">
-                          <%= product.total_sales %>
+                          {product.total_sales}
                         </.table_cell>
                         <.table_cell class="hidden md:table-cell">
-                          <%= product.created_at |> Calendar.strftime("%Y-%m-%d %I:%M:%S %p") %>
+                          {product.created_at |> Calendar.strftime("%Y-%m-%d %I:%M:%S %p")}
                         </.table_cell>
                         <.table_cell>
                           <.dropdown_menu>

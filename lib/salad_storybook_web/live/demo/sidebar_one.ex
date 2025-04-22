@@ -151,14 +151,14 @@ defmodule SaladStorybookWeb.Demo.SidebarOne do
         <.sidebar_content>
           <.sidebar_group :for={group <- @data.nav_main}>
             <.sidebar_group_label>
-              <%= group.title %>
+              {group.title}
             </.sidebar_group_label>
             <.sidebar_group_content>
               <.sidebar_menu>
                 <.sidebar_menu_item :for={item <- group.items}>
                   <.sidebar_menu_button is_active={item[:is_active]}>
                     <a href={item.url}>
-                      <%= item.title %>
+                      {item.title}
                     </a>
                   </.sidebar_menu_button>
                 </.sidebar_menu_item>
@@ -238,7 +238,7 @@ defmodule SaladStorybookWeb.Demo.SidebarOne do
                   Documentation
                 </span>
                 <span class="">
-                  v<%= @default_version %>
+                  v{@default_version}
                 </span>
               </div>
               <Lucideicons.chevrons_up_down class="ml-auto" />
@@ -247,7 +247,7 @@ defmodule SaladStorybookWeb.Demo.SidebarOne do
           <.dropdown_menu_content class="w-full" align="start">
             <.menu>
               <.menu_item :for={item <- @versions}>
-                v<%= item %>
+                v{item}
               </.menu_item>
             </.menu>
           </.dropdown_menu_content>
