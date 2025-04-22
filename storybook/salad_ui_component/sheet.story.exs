@@ -7,14 +7,14 @@ defmodule Storybook.SaladUIComponents.Sheet do
   alias SaladUI.Label
   alias SaladUI.Sheet
 
-  def function, do: &Sheet.sheet_content/1
+  def function, do: &Sheet.sheet/1
 
   def imports,
     do: [
       {Sheet,
        [
-         sheet: 1,
          sheet_trigger: 1,
+         sheet_content: 1,
          sheet_header: 1,
          sheet_title: 1,
          sheet_footer: 1,
@@ -31,51 +31,151 @@ defmodule Storybook.SaladUIComponents.Sheet do
       %Variation{
         id: :default,
         description: """
-
-        Sheet support 4 side: top, right, bottom, left. Default is `right`.
-        `sheet_trigger` and `sheet_close` must set `target` attribute to id of `sheet_content`
+        Sheets slide in from one of four sides: top, right, bottom, or left. Default is `right`.
         """,
         template: """
-        <.sheet>
-          <.sheet_trigger target="sheet-single-default">
-            <.button variant="outline">Open</.button>
+        <.sheet id="sheet-default">
+          <.sheet_trigger>
+            <.button variant="outline">Open Sheet</.button>
           </.sheet_trigger>
-        <.psb-variation />
+          <.sheet_content side="right">
+            <.sheet_header>
+              <.sheet_title>Edit profile</.sheet_title>
+              <.sheet_description>
+                Make changes to your profile here. Click save when you're done.
+              </.sheet_description>
+            </.sheet_header>
+            <div class="grid gap-4 py-4">
+              <div class="grid grid-cols-4 items-center gap-4">
+                <.label for="name" class="text-right">
+                  Name
+                </.label>
+                <.input id="name" value="Pedro Duarte" class="col-span-3" />
+              </div>
+              <div class="grid grid-cols-4 items-center gap-4">
+                <.label for="username" class="text-right">
+                  Username
+                </.label>
+                <.input id="username" value="@peduarte" class="col-span-3" />
+              </div>
+            </div>
+            <.sheet_footer>
+              <.sheet_close>
+                <.button type="submit" phx-click="save">Save changes</.button>
+              </.sheet_close>
+            </.sheet_footer>
+          </.sheet_content>
         </.sheet>
+        """
+      },
+      %Variation{
+        id: :sides,
+        description: """
+        Sheets can appear from any of the four sides of the screen.
         """,
-        attributes: %{id: "sheet-single-default"},
-        slots: [
-          """
-                <.sheet_header>
-                <.sheet_title>Edit profile</.sheet_title>
+        template: """
+        <div class="flex flex-wrap gap-4">
+          <.sheet id="sheet-left">
+            <.sheet_trigger>
+              <.button variant="outline">From Left</.button>
+            </.sheet_trigger>
+            <.sheet_content side="left">
+              <.sheet_header>
+                <.sheet_title>Left Sheet</.sheet_title>
+                <.sheet_description>This sheet slides in from the left side.</.sheet_description>
+              </.sheet_header>
+              <.sheet_footer>
+                <.sheet_close>
+                  <.button>Close</.button>
+                </.sheet_close>
+              </.sheet_footer>
+            </.sheet_content>
+          </.sheet>
+
+          <.sheet id="sheet-right">
+            <.sheet_trigger>
+              <.button variant="outline">From Right</.button>
+            </.sheet_trigger>
+            <.sheet_content side="right">
+              <.sheet_header>
+                <.sheet_title>Right Sheet</.sheet_title>
+                <.sheet_description>This sheet slides in from the right side.</.sheet_description>
+              </.sheet_header>
+              <.sheet_footer>
+                <.sheet_close>
+                  <.button>Close</.button>
+                </.sheet_close>
+              </.sheet_footer>
+            </.sheet_content>
+          </.sheet>
+
+          <.sheet id="sheet-top">
+            <.sheet_trigger>
+              <.button variant="outline">From Top</.button>
+            </.sheet_trigger>
+            <.sheet_content side="top">
+              <.sheet_header>
+                <.sheet_title>Top Sheet</.sheet_title>
+                <.sheet_description>This sheet slides in from the top.</.sheet_description>
+              </.sheet_header>
+              <.sheet_footer>
+                <.sheet_close>
+                  <.button>Close</.button>
+                </.sheet_close>
+              </.sheet_footer>
+            </.sheet_content>
+          </.sheet>
+
+          <.sheet id="sheet-bottom">
+            <.sheet_trigger>
+              <.button variant="outline">From Bottom</.button>
+            </.sheet_trigger>
+            <.sheet_content side="bottom">
+              <.sheet_header>
+                <.sheet_title>Bottom Sheet</.sheet_title>
+                <.sheet_description>This sheet slides in from the bottom.</.sheet_description>
+              </.sheet_header>
+              <.sheet_footer>
+                <.sheet_close>
+                  <.button>Close</.button>
+                </.sheet_close>
+              </.sheet_footer>
+            </.sheet_content>
+          </.sheet>
+        </div>
+        """
+      },
+      %Variation{
+        id: :programmatic,
+        description: """
+        Sheets can be controlled programmatically using LiveView's JS commands.
+        """,
+        template: """
+        <div class="space-y-4">
+          <.sheet id="sheet-programmatic">
+            <.sheet_content side="right">
+              <.sheet_header>
+                <.sheet_title>Programmatic Sheet</.sheet_title>
                 <.sheet_description>
-                  Make changes to your profile here. Click save when you're done.
+                  This sheet is controlled programmatically from outside.
                 </.sheet_description>
               </.sheet_header>
-              <div class="grid gap-4 py-4">
-                <div class="grid grid-cols-4 items-center gap-4">
-                  <.label html-for="name" class="text-right">
-                    Name
-                  </.label>
-                  <.input id="name" value="Pedro Duarte" class="col-span-3" />
-                </div>
-                <div class="grid grid-cols-4 items-center gap-4">
-                  <.label html-for="username" class="text-right">
-                    Username
-                  </.label>
-                  <.input id="username" value="@peduarte" class="col-span-3" />
-                </div>
+              <div class="py-4">
+                <p>The sheet was opened using a JS command rather than a trigger.</p>
               </div>
               <.sheet_footer>
-                <.sheet_close target="sheet-single-default">
-                  <.button type="submit" phx-click={JS.exec("phx-hide-sheet", to: "#sheet-single-default") |> JS.push("save")}>Save changes</.button>
+                <.sheet_close>
+                  <.button>Close</.button>
                 </.sheet_close>
-                <.button phx-click={JS.push("psb-assign")} phx-value-variation_id={:default} phx-value-show={"false"}>
-          Close from back-end
-          </.button>
               </.sheet_footer>
-          """
-        ]
+            </.sheet_content>
+          </.sheet>
+
+          <.button phx-click={%JS{} |> SaladUI.LiveView.JS.dispatch_command("open", to: "#sheet-programmatic")}>
+            Open Sheet Programmatically
+          </.button>
+        </div>
+        """
       }
     ]
   end

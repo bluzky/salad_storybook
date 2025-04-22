@@ -1,5 +1,9 @@
 defmodule Storybook.SaladUIComponents.Select do
-  @moduledoc false
+  @moduledoc """
+  Storybook documentation for the SaladUI Select component.
+
+  The Select component provides a dropdown menu for selecting options from a list.
+  """
   use PhoenixStorybook.Story, :component
 
   def function, do: &SaladUI.Select.select/1
@@ -19,34 +23,94 @@ defmodule Storybook.SaladUIComponents.Select do
       {SaladUI.Button, [button: 1]}
     ]
 
+  def description do
+    """
+    The Select component allows users to choose one option from a dropdown list.
+    It supports single and multiple selection modes, grouping of options, and disabled states.
+    """
+  end
+
   def variations do
     [
       %Variation{
-        id: :select,
+        id: :default_select,
+        description: "A select component with default styling and behavior",
         attributes: %{
+          id: "fruit-select",
           name: "fruit",
-          target: "my-select",
-          placeholder: "Select a fruit"
+          "on-value-changed": "value_changed"
+        },
+        let: :select,
+        slots: [
+          """
+            <.select_trigger class="w-[180px]">
+              <.select_value placeholder="Select a fruit" />
+            </.select_trigger>
+            <.select_content>
+              <.select_group>
+                <.select_label>Fruits</.select_label>
+                <.select_item value="apple">Apple</.select_item>
+                <.select_item value="banana">Banana</.select_item>
+                <.select_item value="blueberry">Blueberry</.select_item>
+                <.select_separator />
+                <.select_item disabled value="grapes">Grapes</.select_item>
+                <.select_item value="pineapple">Pineapple</.select_item>
+              </.select_group>
+            </.select_content>
+          """
+        ]
+      },
+      %Variation{
+        id: :with_default_value,
+        description: "A select component with a pre-selected default value",
+        attributes: %{
+          id: "preset-select",
+          name: "fruit",
+          value: "banana"
+        },
+        let: :select,
+        slots: [
+          """
+            <.select_trigger class="w-[180px]">
+              <.select_value />
+            </.select_trigger>
+            <.select_content>
+              <.select_item value="apple">Apple</.select_item>
+              <.select_item value="banana">Banana</.select_item>
+              <.select_item value="orange">Orange</.select_item>
+            </.select_content>
+          """
+        ]
+      },
+      %Variation{
+        id: :in_form,
+        description: "A select component used within a form",
+        attributes: %{
+          id: "form-select",
+          name: "fruit"
         },
         template: """
-        <form>
-          <.psb-variation />
-          <.button type="submit" class="w-full mt-2">Submit</.button>
+        <form phx-change="validate" phx-submit="save" class="space-y-4">
+          <div>
+            <label for="form-select" class="block text-sm font-medium text-gray-700 mb-1">
+              Select a fruit
+            </label>
+            <.psb-variation />
+          </div>
+          <.button type="submit">Submit</.button>
         </form>
         """,
         let: :select,
         slots: [
           """
-            <.select_trigger builder={select} class="w-[180px]"/>
-            <.select_content class="w-full" builder={select}>
+            <.select_trigger class="w-full">
+              <.select_value placeholder="Choose an option" />
+            </.select_trigger>
+            <.select_content class="w-full">
               <.select_group>
-                <.select_label>Fruits</.select_label>
-                <.select_item builder={select} value="apple" label="Apple"></.select_item>
-                <.select_item builder={select} value="banana" label="Banana"></.select_item>
-                <.select_item builder={select}  value="blueberry"></.select_item>
-                <.select_separator />
-                <.select_item builder={select} disabled value="grapes"></.select_item>
-                <.select_item builder={select} value="pineapple"></.select_item>
+                <.select_item value="apple">Apple</.select_item>
+                <.select_item value="banana">Banana</.select_item>
+                <.select_item value="blueberry">Blueberry</.select_item>
               </.select_group>
             </.select_content>
           """
@@ -54,4 +118,5 @@ defmodule Storybook.SaladUIComponents.Select do
       }
     ]
   end
+
 end

@@ -21,12 +21,18 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
+import SaladUI from "../../../salad_ui/assets/index";
+import "../../../salad_ui/assets/components/dialog";
+import "../../../salad_ui/assets/components/select";
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
+  hooks: {
+    SaladUI: SaladUI.SaladUIHook,
+  },
 });
 
 // Show progress bar on live navigation and form submits
