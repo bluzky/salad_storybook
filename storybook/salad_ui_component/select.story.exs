@@ -38,7 +38,8 @@ defmodule Storybook.SaladUIComponents.Select do
         attributes: %{
           id: "fruit-select",
           name: "fruit",
-          "on-value-changed": "value_changed"
+          "on-value-changed": "value_changed",
+          "use-portal": false
         },
         let: :select,
         slots: [
@@ -66,7 +67,9 @@ defmodule Storybook.SaladUIComponents.Select do
         attributes: %{
           id: "preset-select",
           name: "fruit",
-          value: "banana"
+          value: "banana",
+          "use-portal": false
+
         },
         let: :select,
         slots: [
@@ -87,7 +90,8 @@ defmodule Storybook.SaladUIComponents.Select do
         description: "A select component used within a form",
         attributes: %{
           id: "form-select",
-          name: "fruit"
+          name: "fruit",
+          "use-portal": false
         },
         template: """
         <form phx-change="validate" phx-submit="save" class="space-y-4">
@@ -103,10 +107,10 @@ defmodule Storybook.SaladUIComponents.Select do
         let: :select,
         slots: [
           """
-            <.select_trigger class="w-full">
+            <.select_trigger class="min-w-64 w-full">
               <.select_value placeholder="Choose an option" />
             </.select_trigger>
-            <.select_content class="w-full">
+            <.select_content>
               <.select_group>
                 <.select_item value="apple">Apple</.select_item>
                 <.select_item value="banana">Banana</.select_item>
@@ -118,5 +122,4 @@ defmodule Storybook.SaladUIComponents.Select do
       }
     ]
   end
-
 end
