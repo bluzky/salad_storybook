@@ -10,13 +10,31 @@ defmodule Storybook.SaladUIComponents.Switch do
         id: :basic,
         variations: [
           %Variation{
-            id: :switch
+            id: :default,
+            attributes: %{
+              id: "switch-default"
+            }
+          },
+          %Variation{
+            id: :checked,
+            attributes: %{
+              id: "switch-checked",
+              checked: true
+            }
           },
           %Variation{
             id: :disabled,
             attributes: %{
-              checked: "true",
-              disabled: "true"
+              id: "switch-disabled",
+              disabled: true
+            }
+          },
+          %Variation{
+            id: :checked_disabled,
+            attributes: %{
+              id: "switch-checked-disabled",
+              checked: true,
+              disabled: true
             }
           }
         ]
@@ -25,12 +43,14 @@ defmodule Storybook.SaladUIComponents.Switch do
         id: :with_label,
         template: """
         <div class="flex items-center space-x-2">
-        <.psb-variation />
-        <label for="switch-single-with-label">Click me</label>
+          <.psb-variation />
+          <label for="switch-with-label">Click me</label>
         </div>
         """,
         attributes: %{
-          checked: "true"
+          id: "switch-with-label",
+          checked: true,
+          "on-checked-changed": "on_checked"
         }
       }
     ]
