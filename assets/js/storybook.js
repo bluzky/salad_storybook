@@ -15,6 +15,7 @@ import "../../../salad_ui/assets/components/tooltip";
 import "../../../salad_ui/assets/components/accordion";
 import "../../../salad_ui/assets/components/slider";
 import "../../../salad_ui/assets/components/switch";
+import "../../../salad_ui/assets/components/dropdown_menu";
 
 // import * as Params from "./params";
 // import * as Uploaders from "./uploaders";
