@@ -1,5 +1,7 @@
 # SaladStorybook
 
+# ⚠️ Salad Storybook is now merged into salad_ui
+for better developer experient
 
 ![Sample page](./img/demo.png)
 
